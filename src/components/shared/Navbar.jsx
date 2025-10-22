@@ -1,15 +1,34 @@
 
-import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { FaRegCircleUser, FaRegStar, FaRegUser } from 'react-icons/fa6';
+import { RiShoppingCartLine } from 'react-icons/ri';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
+import { GoHeart } from 'react-icons/go';
+import { FiLogOut } from 'react-icons/fi';
+import BoiLagbeLogo from '../../assets/ChatGPT Image Oct 2, 2025, 11_05_03 PM.png'
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const links = <>
-        <li ><NavLink className={(isActive)=> isActive ? 'text-red-700 font-semibold' : 'text-black'} >হোম</NavLink></li>
-        <li><NavLink className={(isActive)=> isActive ? 'text-red-700 font-semibold' : 'text-black'} to={'/products'}>সকল বই</NavLink></li>
-        <li><NavLink className={(isActive)=> isActive ? 'text-red-700 font-semibold' : 'text-black'} to={'/blog'}>ব্লগ</NavLink></li>
-        <li><NavLink>Home</NavLink></li>
-
+        <li><NavLink to={"/"}>Home</NavLink></li>
+        <li><NavLink to={"/products"}>Products</NavLink></li>
+        <li><NavLink to={"/contact"}>Contact</NavLink></li>
+        <li><NavLink to={"/about"}>About us</NavLink></li>
     </>
+
+
+const handleLogOut = ()=>{
+    logOut()
+    .then(()=>{
+
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
     return (
         <div className="navbar justify-between py-5 px-20 bg-base-100  shadow-sm">
             <div className=" ">
@@ -25,11 +44,11 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">BoiLagbe</a>
+                <a className="btn btn-ghost text-xl"><img className='h-24 w-24' src={BoiLagbeLogo} alt="" /></a>
             </div>
             <div className='navbar-center hidden lg:flex'>
-                <label className="flex flex-row-reverse py-2 border rounded-full items-center px-5 border-sky-500">
-                    <svg className="h-[1em] opacity-50 text-sky-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <label className="flex flex-row-reverse py-2 border rounded-full items-center px-5 border-green-500">
+                    <svg className="h-[1em] opacity-50 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             strokeLinejoin="round"
                             strokeLinecap="round"
@@ -53,8 +72,34 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-               <button className='py-3 px-10'> <Link to={'/Login'} className='py-3 px-6'>Sign up</Link></button>
-               <button className='py-3 px-10'> <Link to={'/Login'} className='py-3 px-6'>Sign up</Link></button>
+
+                <div className='flex items-center gap-4'>
+
+
+                    {
+                        user ? <div> <div className="dropdown dropdown-end  dropdown-hover z-50">
+                            <div tabIndex={0} role="button" className=""> <img
+                                className="h-10 w-10 rounded-full object-cover"
+                                referrerPolicy="no-referrer"
+                                src={user?.photoURL}
+                                alt="" /></div>
+                            <ul tabIndex={0} className="dropdown-content font-semibold menu bg-base-100  z-[1] w-52 p-2 shadow">
+                                <li><Link>{user?.displayName}</Link></li>
+                                <li><Link className='hover:text-green-500  '><FaRegUser className='text-lg'/> My Account</Link></li>
+                                <li><Link className='hover:text-green-500  '><RiShoppingCartLine className='text-xl'/> My Orders</Link></li>
+                                <li><Link className='hover:text-green-500  '><FaRegStar className='text-xl'/> Reviews</Link></li>
+                                <li><Link className='hover:text-green-500  '><GoHeart className='text-xl'/> Wish List</Link></li>
+                                <li><button onClick={handleLogOut}><FiLogOut className='text-xl'/> Log out</button></li>
+                            </ul>
+                        </div>
+                        </div> : <div className="flex gap-2"> <Link to={'/login'} className='py-3 px-6 flex items-center gap-2  border rounded-full hover:bg-green-400 hover:text-white '><FaRegCircleUser className='text-xl ' /> Sign up</Link>
+                        </div>
+                    }
+                    <Link to={'/cart'} className=''><RiShoppingCartLine className='text-3xl' /></Link>
+
+                </div>
+
+
             </div>
         </div>
     );

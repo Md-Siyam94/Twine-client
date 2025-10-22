@@ -1,7 +1,7 @@
 // import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import slider1 from '../../assets/front-view-stack-books-with-copy-space.jpg'
+// import slider1 from '../../assets/front-view-stack-books-with-copy-space.jpg'
 import slider2 from '../../assets/rm347-sasi-banner-15.jpg'
 import slider3 from '../../assets/8620842.jpg'
 

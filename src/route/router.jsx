@@ -4,10 +4,15 @@ import {
 } from "react-router-dom";
 
 
-import MainLayout from "../MainLayout";
+import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
-import Blog from "../pages/Blog/blog";
-import Products from "../pages/Products/Products";
+
+import Products from "../pages/AllProducts/Products";
+import Login from "../pages/Registration/Login"
+import Signup from "../pages/Registration/Signup"
+import Cart from "../pages/Cart/Cart";
+import Contact from "../pages/contact/Contact";
+import About from "../pages/about/About";
 
 
 
@@ -23,14 +28,30 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/blog',
-        element: <Blog></Blog>
-      },
-      {
         path: '/products',
         element: <Products></Products>
+      },
+      {
+        path: '/contact',
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path: '/cart',
+        element: <Cart></Cart>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/signup',
+        element: <Signup></Signup>
       }
-      
+
     ]
   },
 ]);
