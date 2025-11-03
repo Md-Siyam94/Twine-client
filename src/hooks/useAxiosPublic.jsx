@@ -1,16 +1,12 @@
-import axios, { Axios } from 'axios';
-import React from 'react';
+import axios from 'axios';
+// import React from 'react';
 
 const axiosPublic = axios.create({
-    baseURL: ``
+    baseURL: `${import.meta.env.VITE_baseAPI}`
 })
 
 const useAxiosPublic = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return axiosPublic
 };
 
 export default useAxiosPublic;

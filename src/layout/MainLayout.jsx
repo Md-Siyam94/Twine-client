@@ -8,7 +8,7 @@ function MainLayout() {
 
 
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <div className="max-w-screen-2xl ">
       <header>
         <Navbar></Navbar>
       </header>

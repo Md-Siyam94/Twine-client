@@ -15,8 +15,13 @@ const Products = () => {
     
 
     return (
-        <div>
-            Products page is commingggggg
+        <div className='px-20 grid mt-4 grid-cols-12 '>
+           <div className='col-span-4 border h-96'>
+
+           </div>
+           <div className='col-span-8 border h-96'>
+            
+           </div>
         </div>
     );
 };

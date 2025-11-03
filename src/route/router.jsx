@@ -13,6 +13,7 @@ import Signup from "../pages/Registration/Signup"
 import Cart from "../pages/Cart/Cart";
 import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
+import ProductDetails from "../pages/Product Details/ProductDetails";
 
 
 
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
       {
         path: '/products',
         element: <Products></Products>
+      },
+      {
+        path: "/product-details/:id",
+        element: <ProductDetails></ProductDetails>,
+        loader: ({params})=> fetch(`${import.meta.env.VITE_baseAPI}/products/${params.id}`)
       },
       {
         path: '/contact',
