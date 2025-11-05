@@ -14,6 +14,12 @@ import Cart from "../pages/Cart/Cart";
 import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
 import ProductDetails from "../pages/Product Details/ProductDetails";
+import Dashboard from "../layout/Dashboard";
+
+import MyProfile from "../pages/Dashboard pages/shared/MyProfile";
+import MyOrders from "../pages/Dashboard pages/shared/MyOrders";
+import Review from "../pages/Dashboard pages/shared/Review";
+import Wishlist from "../pages/Dashboard pages/shared/Wishlist";
 
 
 
@@ -60,6 +66,30 @@ const router = createBrowserRouter([
 
     ]
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard/profile",
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: "/dashboard/my-orders",
+        element: <MyOrders></MyOrders>
+      },
+      {
+        path: "/dashboard/my-reviews",
+        element: <Review></Review>
+      },
+      {
+        path: "/dashboard/wishlist",
+        element: <Wishlist></Wishlist>
+      }
+
+
+    ]
+  }
 ]);
 
 

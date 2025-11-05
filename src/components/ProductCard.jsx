@@ -2,13 +2,14 @@ import React from 'react';
 import { SwiperSlide } from 'swiper/react';
 
 const ProductCard = ({ product }) => {
-    console.log(product);
+    // console.log(product);
     return (
         <SwiperSlide>
             <div className="card bg-base-100  shadow-sm">
                 <figure>
                     <img
-                        src={"https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"}
+                    className='h-48 '
+                        src={product?.image}
                         alt="Shoes" />
                 </figure>
                 <div className="card-body">

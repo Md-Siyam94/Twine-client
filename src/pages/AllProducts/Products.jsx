@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import useProducts from '../../hooks/useProducts';
+import ProductCard from '../../components/ProductCard';
 
 const Products = () => {
-    // const [products, setProducts] = useState([])
     const [products] = useProducts()
-    // console.log(products);
-    // useEffect(()=>{
-    //     fetch('/products.json')
-    //     .then(res=> res.json())
-    //     .then(data=> {
-    //         console.log(data);
-    //     })
-    // },[])
     
 
-    return (
-        <div className='px-20 grid mt-4 grid-cols-12 '>
-           <div className='col-span-4 border h-96'>
 
-           </div>
-           <div className='col-span-8 border h-96'>
+    return (
+        <div className='px-20 pt-5 '>
             
-           </div>
+            <div className=' grid grid-cols-5 gap-4 items-center '>
+                    {
+                        products.map((product, index)=> <ProductCard key={index} product={product}></ProductCard>)
+                    }
+            </div>
         </div>
     );
 };

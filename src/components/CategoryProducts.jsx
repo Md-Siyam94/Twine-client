@@ -5,7 +5,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import ProductCard from './ProductCard';
 
 import "swiper/css";
-import { Link } from 'react-router-dom';
+import { data, Link } from 'react-router-dom';
 
 
 
@@ -18,9 +18,9 @@ const CategoryProducts = ({ category }) => {
         const data = products.filter(p => p?.category === category)
         setCategoryWProducts(data)
         // console.log(data);
-    }, [ products,setCategoryWProducts])
+    }, [ category, data])
 
-    console.log(products);
+    // console.log(products);
 
 
 
