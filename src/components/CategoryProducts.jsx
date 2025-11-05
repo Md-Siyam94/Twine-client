@@ -2,31 +2,40 @@ import React, { useEffect, useState } from 'react';
 import useProducts from '../hooks/useProducts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-import ProductCard from './ProductCard';
+
 
 import "swiper/css";
 import { data, Link } from 'react-router-dom';
+import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 
 
 
 
-const CategoryProducts = ({ category }) => {
-    const [products] = useProducts()
-    const [categoryWProducts, setCategoryWProducts] = useState([])
+const CategoryProducts = ({category}) => {
+    // const [products] = useProducts()
+    const products = useCategoryWiseProducts(category)
+    
+    // console.log(products);
 
-    useEffect(() => {
-        const data = products.filter(p => p?.category === category)
-        setCategoryWProducts(data)
-        // console.log(data);
-    }, [ category, data])
+    // const [categoryWProducts, setCategoryWProducts] = useState([])
+    // useEffect(()=>{
+        
+    // },[category, data])
+
+    // useEffect(() => {
+    //     const data = products.filter(newProducts => newProducts?.category === category)
+    //     setCategoryWProducts(data)
+    //     console.log(data);
+    // }, [ category, data])
 
     // console.log(products);
+    // console.log(categoryWProducts);
 
 
 
 
     return (
-        <div className='slider-container w-11/12 mx-auto '>
+        <div className=' py-20 w-11/12 mx-auto '>
             <h1 className='text-2xl font-semibold mb-4'>{category}</h1>
            <div className='border-2 border-gray-400 p-5 rounded-2xl '>
              <Swiper
@@ -36,7 +45,7 @@ const CategoryProducts = ({ category }) => {
                 className="mySwiper "
             >
                  {
-                  categoryWProducts?.slice(0,10).map((product) => {
+                  products?.slice(0,15).map((product) => {
                     return <SwiperSlide key={product?._id} className=''>
                         <div className="card bg-base-100 h-full shadow-sm   ">
                 <Link to={`/product-details/${product?._id}`}>

@@ -3,6 +3,7 @@ import Hero from './Hero';
 
 import CategoryProducts from '../../components/CategoryProducts';
 import TargetAudiance from './TargetAudiance';
+import WinterArrivalse from './WinterArrivalse';
 
 
 
@@ -21,6 +22,9 @@ const Home = () => {
             <section>
             <CategoryProducts category={"T-shirt"}></CategoryProducts>
             </section>
+            {/* <section className='py-20 border'>
+                <WinterArrivalse></WinterArrivalse>
+            </section> */}
         </div>
     );
 };
