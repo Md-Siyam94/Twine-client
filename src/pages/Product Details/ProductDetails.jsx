@@ -6,7 +6,7 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 const ProductDetails = () => {
     const params = useParams()
     const product = useLoaderData()
-    console.log(product);
+    // console.log(product);
     const { name, description, price, _id, currency, size, color, inStock, material, brand, image, category } = product || {}
 
     const singleSize = size.join(", ")

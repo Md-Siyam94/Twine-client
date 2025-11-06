@@ -109,10 +109,10 @@ const Navbar = () => {
                                     alt="" /></div>
                                 <ul tabIndex={0} className="dropdown-content font-semibold menu bg-base-100  z-[1] w-52 p-2 shadow">
                                     <li><Link>{user?.displayName}</Link></li>
-                                    <li><Link to={"/dashboard/profile"} className='hover:text-green-500  '><FaRegUser className='text-lg' /> My Account</Link></li>
-                                    <li><Link className='hover:text-green-500  '><RiShoppingCartLine className='text-xl' /> My Orders</Link></li>
-                                    <li><Link className='hover:text-green-500  '><FaRegStar className='text-xl' /> Reviews</Link></li>
-                                    <li><Link className='hover:text-green-500  '><GoHeart className='text-xl' /> Wish List</Link></li>
+                                    <li><NavLink to={"/dashboard/profile"} className='hover:text-green-500  '><FaRegUser className='text-lg' /> My Account</NavLink></li>
+                                    <li><NavLink to={"/dashboard/my-orders"} className='hover:text-green-500  '><RiShoppingCartLine className='text-xl' /> My Orders</NavLink></li>
+                                    <li><NavLink to={"/dashboard/my-reviews"} className='hover:text-green-500  '><FaRegStar className='text-xl' /> Reviews</NavLink></li>
+                                    <li><NavLink to={"/dashboard/wishlist"} className='hover:text-green-500  '><GoHeart className='text-xl' /> Wish List</NavLink></li>
                                     <li><button onClick={handleLogOut}><FiLogOut className='text-xl' /> Log out</button></li>
                                 </ul>
                             </div>
