@@ -127,7 +127,7 @@ const Navbar = () => {
                 </div>
 
             </div>
-            <div>
+            {/* <div>
 
                 {
                     path == "/dashboard" ? <div></div> : <div className='py-3 px-20 shadow-sm '>
@@ -146,7 +146,7 @@ const Navbar = () => {
 
                     </div>
                 }
-            </div>
+            </div> */}
 
         </div>
     );

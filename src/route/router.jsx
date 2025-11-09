@@ -20,6 +20,7 @@ import MyProfile from "../pages/Dashboard pages/shared/MyProfile";
 import MyOrders from "../pages/Dashboard pages/shared/MyOrders";
 import Review from "../pages/Dashboard pages/shared/Review";
 import Wishlist from "../pages/Dashboard pages/shared/Wishlist";
+import AddProduct from "../pages/Dashboard pages/Admin pages/AddProduct";
 
 
 
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-orders",
         element: <MyOrders></MyOrders>
+      },
+      {
+        path: "/dashboard/add-product",
+        element: <AddProduct></AddProduct>
       },
       {
         path: "/dashboard/my-reviews",

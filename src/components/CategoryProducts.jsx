@@ -12,32 +12,12 @@ import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 
 
 const CategoryProducts = ({category}) => {
-    // const [products] = useProducts()
     const products = useCategoryWiseProducts(category)
-    
-    // console.log(products);
-
-    // const [categoryWProducts, setCategoryWProducts] = useState([])
-    // useEffect(()=>{
-        
-    // },[category, data])
-
-    // useEffect(() => {
-    //     const data = products.filter(newProducts => newProducts?.category === category)
-    //     setCategoryWProducts(data)
-    //     console.log(data);
-    // }, [ category, data])
-
-    // console.log(products);
-    // console.log(categoryWProducts);
-
-
-
 
     return (
-        <div className=' py-20 w-11/12 mx-auto '>
+        <div className=' py-5 w-11/12 mx-auto '>
             <h1 className='text-2xl font-semibold mb-4'>{category}</h1>
-           <div className='border-2 border-gray-400 p-5 rounded-2xl '>
+           <div className='shadow-lg p-5 rounded-2xl '>
              <Swiper
                 watchSlidesProgress={true}
                 spaceBetween={30}
@@ -51,7 +31,7 @@ const CategoryProducts = ({category}) => {
                 <Link to={`/product-details/${product?._id}`}>
                     <figure>
                     <img
-                    className='h-48 object-cover'
+                    className='h-40 object-cover'
                         src={product?.image}
                         alt={product?.category} />
                 </figure>
