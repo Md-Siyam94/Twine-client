@@ -1,26 +1,56 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
+
+const img_hosting_key = import.meta.env.VITE_img_hosting_key;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 const AddProduct = () => {
-
+    const axiosSecure = useAxiosSecure()
     const [uploading, setUploading] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        
-        
-        const productInfo = {
-            name: data?.name,
-            brand: data?.brand,
-            price: data?.price,
-            currency: data?.currency,
 
+        setUploading(true)
+        const imageFile = { image: data?.image[0] }
+        console.log(imageFile);
+        const res = await axiosSecure.post(img_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        // console.log(res?.data?.data?.display_url);
+        if (res?.data?.success) {
+            const productInfo = {
+                name: data?.name,
+                brand: data?.brand,
+                price: data?.price,
+                currency: data?.currency,
+                image: res?.data?.data?.display_url,
+                size: data?.size.split(","),
+                color: data?.color.split(","),
+                metarial: data?.metarial,
+                targetAudiance: data?.targetAudiance,
+
+                
+            }
+            axiosSecure.post('/products', productInfo)
+            .then(res=> {
+                if(res?.data?.success){
+                    setUploading(false)
+                    
+                }
+            })
         }
+
+        // console.log(data);
+
     }
     return (
-        <div className="border grid grid-cols-12 gap-12">
-            <form onSubmit={handleSubmit(onSubmit)} className="border rounded-2xl p-10 col-span-7 ">
+        <div className="bg-base-200 grid grid-cols-12 gap-12">
+            <form onSubmit={handleSubmit(onSubmit)} className=" rounded-2xl p-10 col-span-7 bg-base-100 m-5">
                 <fieldset className="fieldset">
                     {/* <label className="label">Email</label>
           <input type="email" className="input" placeholder="Email" /> */}
@@ -75,6 +105,7 @@ const AddProduct = () => {
                             {errors.size?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
+                  
                     {/* color */}
                     <div className="form-control">
                         <label className="label">
@@ -99,18 +130,18 @@ const AddProduct = () => {
                         </div>
                         {/* audiance */}
                         <div>
-                             <label className="label">
+                            <label className="label">
                                 <span className="label-text">Audience</span>
                             </label><br />
                             <select {...register("targetAudience", { required: true })} defaultValue="choose a audience" className="select select-success">
-                            <option disabled={true}>choose a audience</option>
-                            <option value={"Man"}>Man</option>
-                            <option value={"Woman"}>Woman</option>
-                            <option value={"Kids"}>Kids</option>
-                        </select>
+                                <option disabled={true}>choose a audience</option>
+                                <option value={"Man"}>Man</option>
+                                <option value={"Woman"}>Woman</option>
+                                <option value={"Kids"}>Kids</option>
+                            </select>
                         </div>
                     </div>
-                     {/* currency */}
+                    {/* currency */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Currency</span>
@@ -144,14 +175,14 @@ const AddProduct = () => {
                     <div>
                         <button className="btn btn-info text-white mt-8">
                             {
-                                uploading ? "Posting..." : "Post story"
+                                uploading ? "Uploading..." : "Uploade product"
                             }
                         </button>
                     </div>
                 </fieldset>
             </form>
             <form onSubmit={handleSubmit(onSubmit)} className="border rounded-2xl p-10 col-span-5">
-                {/* <fieldset className="fieldset">
+                <fieldset className="fieldset">
 
                     <label className="form-control w-full max-w-xs">
                         <div className="label">
@@ -162,7 +193,7 @@ const AddProduct = () => {
                             {errors.image?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>Please select an Image for package</p>}
                         </div>
                     </label>
-                </fieldset> */}
+                </fieldset>
             </form>
         </div>
     );
