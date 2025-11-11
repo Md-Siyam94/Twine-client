@@ -17,7 +17,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOutUser } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const path = location.pathname.slice(0, 10)
@@ -41,12 +41,12 @@ const Navbar = () => {
 
 
     const handleLogOut = () => {
-        logOut()
+        logOutUser()
             .then(() => {
-
+                navigate("/")
             })
             .catch(err => {
-                console.log(err);
+                console.log("error from log out", err);
             })
     }
     return (

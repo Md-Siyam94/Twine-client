@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 
@@ -8,6 +10,7 @@ const img_hosting_key = import.meta.env.VITE_img_hosting_key;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 const AddProduct = () => {
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const [uploading, setUploading] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -27,30 +30,44 @@ const AddProduct = () => {
                 name: data?.name,
                 brand: data?.brand,
                 price: data?.price,
+                category: data?.category,
                 currency: data?.currency,
                 image: res?.data?.data?.display_url,
-                size: data?.size.split(","),
-                color: data?.color.split(","),
-                metarial: data?.metarial,
-                targetAudiance: data?.targetAudiance,
+                size: data.size ? data.size.split(",") : [],
+                color: data?.color ? data?.color.split(",") : [],
+                material: data?.material,
+                targetAudience: data?.targetAudience,
+                description: data?.description,
 
-                
+
             }
+            // console.log(productInfo);
             axiosSecure.post('/products', productInfo)
-            .then(res=> {
-                if(res?.data?.success){
-                    setUploading(false)
-                    
-                }
-            })
+                .then(res => {
+                    console.log(res.data);
+                    if (res?.data?.success) {
+                        setUploading(false)
+                        reset()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Product has been uploaded",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log('error from add product', err);
+                })
         }
 
         // console.log(data);
 
     }
     return (
-        <div className="bg-base-200 grid grid-cols-12 gap-12">
-            <form onSubmit={handleSubmit(onSubmit)} className=" rounded-2xl p-10 col-span-7 bg-base-100 m-5">
+        <div className=" grid grid-cols-12 gap-8">
+            <form onSubmit={handleSubmit(onSubmit)} className=" rounded-xl p-10 col-span-7 bg-base-100 ">
                 <fieldset className="fieldset">
                     {/* <label className="label">Email</label>
           <input type="email" className="input" placeholder="Email" /> */}
@@ -85,14 +102,14 @@ const AddProduct = () => {
                             {errors.brand?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                    {/* metarial */}
+                    {/* material */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Product metarial</span>
                         </label><br />
-                        <input type="text" {...register("currency")} placeholder="Currency " className="input input-bordered w-full" />
+                        <input type="text" {...register("material")} placeholder="Material name  " className="input input-bordered w-full" />
                         <div>
-                            {errors.currency?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
+                            {errors.material?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
                     {/* size */}
@@ -105,7 +122,7 @@ const AddProduct = () => {
                             {errors.size?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                  
+
                     {/* color */}
                     <div className="form-control">
                         <label className="label">
@@ -146,7 +163,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Currency</span>
                         </label><br />
-                        <input type="text" {...register("metarial")} placeholder="Currency" className="input input-bordered w-full" />
+                        <input type="text" {...register("currency")} placeholder="Currency" className="input input-bordered w-full" />
                         <div>
                             {errors.metarial?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
@@ -181,7 +198,7 @@ const AddProduct = () => {
                     </div>
                 </fieldset>
             </form>
-            <form onSubmit={handleSubmit(onSubmit)} className="border rounded-2xl p-10 col-span-5">
+            <form onSubmit={handleSubmit(onSubmit)} className=" bg-base-100 rounded-xl p-10 col-span-5">
                 <fieldset className="fieldset">
 
                     <label className="form-control w-full max-w-xs">

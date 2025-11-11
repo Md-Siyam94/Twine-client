@@ -26,9 +26,9 @@ const Dashboard = () => {
             <div>
                 <Navbar></Navbar>
             </div>
-            <div className='grid grid-cols-12 px-20 gap-4 min-h-[calc(100vh-100px)] mt-4 '>
-                <div className='col-span-3 shadow'>
-                    <ul className='font-semibold menu bg-base-100  z-[1] w-full gap-4 p-2'>
+            <div className='grid grid-cols-12 px-20 gap-4 min-h-[calc(100vh-100px)] bg-base-200 pt-4 '>
+                <div className='col-span-3  '>
+                    <ul className='font-semibold menu bg-base-100 rounded-xl shadow  z-[1] w-full gap-4 p-2'>
                         {
                             isAdmin ? <div><li><Link to={"/dashboard/profile"}>
                                 <img className='h-12 w-12 rounded-full object-cover' src={user?.photoURL} alt="user photo" />

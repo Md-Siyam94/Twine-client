@@ -14,6 +14,11 @@ import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 const CategoryProducts = ({category}) => {
     const products = useCategoryWiseProducts(category)
 
+
+    const handleAddToCart = (id)=>{
+        console.log(id);
+    }
+
     return (
         <div className=' py-5 w-11/12 mx-auto '>
             <h1 className='text-2xl font-semibold mb-4'>{category}</h1>
@@ -31,7 +36,7 @@ const CategoryProducts = ({category}) => {
                 <Link to={`/product-details/${product?._id}`}>
                     <figure>
                     <img
-                    className='h-40 object-cover'
+                    className='h-40  '
                         src={product?.image}
                         alt={product?.category} />
                 </figure>
@@ -46,7 +51,7 @@ const CategoryProducts = ({category}) => {
                     <p className=' opacity-60'>{product?.description?.slice(0,70)}...more</p>
                     <div className="card-actions justify-between">
                         <Link to={`/product-details/${product?._id}`} className=" border-b hover:text-teal-400">View Details</Link>
-                        <Link className="py-1 px-4 rounded-2xl bg-teal-400 hover:bg-teal-600 hover:text-white">Add to Cart</Link>
+                        <button type='button' onClick={()=>handleAddToCart(product?._id)}  className="py-1 px-4 rounded-2xl bg-teal-400 hover:bg-teal-600 hover:text-white">Add to Cart</button>
                     </div>
                 </div>
             </div>
