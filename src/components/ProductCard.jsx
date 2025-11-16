@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
                     <p className=' opacity-60'>{product?.description?.slice(0,70)}...more</p>
                     <div className="card-actions justify-between">
                         <Link to={`/product-details/${product?._id}`} className=" border-b hover:text-teal-400">View Details</Link>
-                        <Link className="py-1 px-4 rounded-2xl bg-teal-400 hover:bg-teal-600 hover:text-white">Add to Cart</Link>
+                     
                     </div>
                 </div>
             </div>
