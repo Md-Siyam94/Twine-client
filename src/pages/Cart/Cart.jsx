@@ -5,13 +5,14 @@ import Feature from '../../components/Feature';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { div } from 'motion/react-client';
 
 const Cart = () => {
     const [cartProdcuts, refetch] = useCartProducts()
     const axiosPublic = useAxiosPublic()
 
-    const singleSize = size.join(", ")
-    const singleColor = color.join(", ")
+    // const singleSize = size.join(", ")
+    // const singleColor = color.join(", ")
 
     // delete product from cart
     const handleCancel = (id) => {
@@ -82,11 +83,11 @@ const Cart = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>purpal</td>
+                                    <td>{cartProdcut?.description}</td>
                                     <td>
-                                        Zemlak, Daniel and Leannon
+                                      <span>color: {cartProdcut?.color?.join(", ")}</span>
                                         <br />
-                                        <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                        <span className="badge badge-ghost badge-sm">size: {cartProdcut?.size?.join(", ")}</span>
                                     </td>
                                     <th>
                                         <motion.div

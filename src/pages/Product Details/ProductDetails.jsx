@@ -27,6 +27,7 @@ const ProductDetails = () => {
             productId: _id,
             productImage: image,
             description: description,
+            material: material,
             brand: brand,
             price: price,
             size: size,
