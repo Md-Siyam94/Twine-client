@@ -1,48 +1,119 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { motion } from "motion/react"
 import { Link } from 'react-router-dom';
 import useWishlistProducts from '../../../hooks/useWishlistProducts';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const Wishlist = () => {
     const [wishlistProducts, refetch] = useWishlistProducts()
     const axiosPublic = useAxiosPublic()
-     // delete product from cart
-        const handleDelete = (id) => {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axiosPublic.delete(`/wishlist/${id}`)
-                        .then(res => {
-                            console.log(res.data);
-                            if (res.data?.deletedCount) {
-                                refetch()
+    const [product, setProduct] = useState({})
+    const {user} = useContext(AuthContext)
+    // delete product from cart
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/wishlist/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data?.deletedCount) {
+                            refetch()
+
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "product has been Deleted",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+        });
+
+    }
+
     
-                                Swal.fire({
-                                    position: "top-end",
-                                    icon: "success",
-                                    title: "product has been Deleted",
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        })
-                }
-            });
-    
+
+    // post product to cart
+    const handleAddToCart = (id, wishlistId) => {
+     console.log(id, wishlistId);
+         axiosPublic.get(`/products/${id}`)
+         .then(res=>{
+            setProduct(res.data)
+         })
+         .catch(err=>{
+            console.log(err);
+         })
+      
+        const productInfo = {
+            userEmail: user?.email,
+            userName: user?.displayName,
+            productName: product?.name,
+            productId: product?._id,
+            productImage: product?.image,
+            description: product?.description,
+            material: product?.material,
+            brand: product?.brand,
+            price: product?.price,
+            size: product?.size,
+            color: product?.color,
+
         }
+        console.log(productInfo);
+        axiosPublic.post("/cart_products", productInfo)
+            .then(res => {
+                // console.log(res?.data);
+                if (res?.data?.success) {
+                    // ToDo: need to wishlist Id 
+                      axiosPublic.delete(`/wishlist/${wishlistId}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data?.deletedCount) {
+                            refetch()
+
+                             Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Product has been added to cart",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                   
+                } else {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: `${res?.data?.message}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(err => {
+                console.log("error msg", err);
+            })
+    }
+
     return (
         <div>
             <div className="overflow-x-auto col-span-8">
@@ -81,7 +152,7 @@ const Wishlist = () => {
                                     </td>
                                     <td>{wishlistProduct?.description}</td>
                                     <td>
-                                      <span>color: {wishlistProduct?.color?.join(", ")}</span>
+                                        <span>color: {wishlistProduct?.color?.join(", ")}</span>
                                         <br />
                                         <span className="badge badge-ghost badge-sm">size: {wishlistProduct?.size?.join(", ")}</span>
                                     </td>
@@ -101,11 +172,11 @@ const Wishlist = () => {
                                                 ease: "easeOut",
                                             }}
                                         >
-                                            <button onClick={() => handleDelete(wishlistProduct._id)} className=""><AiTwotoneDelete className=' text-red-300 hover:text-red-400 cursor-pointer text-2xl'/></button>
+                                            <button onClick={() => handleDelete(wishlistProduct?._id)} className=""><AiTwotoneDelete className=' text-red-300 hover:text-red-400  cursor-pointer text-2xl' /></button>
                                         </motion.div>
                                     </th>
                                     <td className='w-32 '>
-                                        <button type='button' className='py-2 px-3 cursor-pointer rounded-xl w-32 bg-teal-700 text-white hover:bg-teal-800 '>Add To Cart</button>
+                                        <button onClick={() => handleAddToCart(wishlistProduct?.productId, wishlistProduct?._id)} type='button' className='py-2 px-3 cursor-pointer rounded-xl w-32 bg-teal-700 text-white hover:bg-teal-800 '>Add To Cart</button>
                                     </td>
                                 </tr>
                             })
