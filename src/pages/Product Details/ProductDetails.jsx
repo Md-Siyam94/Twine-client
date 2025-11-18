@@ -34,15 +34,61 @@ const ProductDetails = () => {
             color: color,
 
         }
-        console.log(productInfo);
+        // console.log(productInfo);
         axiosPublic.post("/cart_products", productInfo)
+            .then(res => {
+                // console.log(res?.data);
+                if (res?.data?.success) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Product has been added to cart",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }else{
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: `${res?.data?.message}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(err => {
+                console.log("error msg", err);
+            })
+    }
+
+
+
+    const handleAddToWishlist = (id) => {
+        const productInfo = {
+            userEmail: user?.email,
+            userName: user?.displayName,
+            productName: name,
+            productId: _id,
+            productImage: image,
+            description: description,
+            material: material,
+            category: category,
+            inStock: inStock,
+            brand: brand,
+            price: price,
+            size: size,
+            color: color,
+
+        }
+        console.log(productInfo);
+        axiosPublic.post("/wishlist", productInfo)
             .then(res => {
                 console.log(res?.data);
                 if (res?.data?.success) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Product has been added to cart",
+                        title: "Product has been added to wishlist",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -84,8 +130,8 @@ const ProductDetails = () => {
                     </p>
                     <p>TK. <span className="text-lg font-semibold">{price} {currency}</span></p>
                     <div className="my-6 flex gap-4">
-                        <button onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10 rounded-lg bg-teal-400 hover:bg-teal-500 hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
-                        <button type="button" className="py-3 px-10 rounded-lg bg-teal-400 hover:bg-teal-500 hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
+                        <button onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10  rounded-lg bg-teal-400 hover:bg-teal-500 hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
+                        <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 rounded-lg bg-teal-400 hover:bg-teal-500 hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
                     </div>
                 </div>
             </div>
