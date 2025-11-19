@@ -49,7 +49,7 @@ const Cart = () => {
 
     }
     return (
-        <div className='grid grid-cols-12 gap-5  px-20 pt-5'>
+        <div className='grid grid-cols-12 gap-5 pb-16 px-20 pt-5'>
             <div className="overflow-x-auto col-span-8">
                 <table className="table">
                     {/* head */}

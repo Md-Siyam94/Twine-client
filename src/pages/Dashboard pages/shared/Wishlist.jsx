@@ -6,12 +6,16 @@ import { AiTwotoneDelete } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { AuthContext } from '../../../provider/AuthProvider';
+// import useGetSingleProduct from '../../../hooks/useGetSingleProduct';
 
 const Wishlist = () => {
     const [wishlistProducts, refetch] = useWishlistProducts()
     const axiosPublic = useAxiosPublic()
-    const [product, setProduct] = useState({})
+    // const [productId, setProductId] = useState("")
     const {user} = useContext(AuthContext)
+const [singleProduct, setSingleProduct] = useState({})
+
+
     // delete product from cart
     const handleDelete = (id) => {
         Swal.fire({
@@ -26,8 +30,8 @@ const Wishlist = () => {
             if (result.isConfirmed) {
                 axiosPublic.delete(`/wishlist/${id}`)
                     .then(res => {
-                        console.log(res.data);
-                        if (res.data?.deletedCount) {
+                        // console.log(res.data);
+                        if (res?.data?.deletedCount) {
                             refetch()
 
                             Swal.fire({
@@ -47,35 +51,39 @@ const Wishlist = () => {
 
     }
 
-    
 
     // post product to cart
-    const handleAddToCart = (id, wishlistId) => {
-     console.log(id, wishlistId);
-         axiosPublic.get(`/products/${id}`)
-         .then(res=>{
-            setProduct(res.data)
-         })
-         .catch(err=>{
+    const handleAddToCart = async(id, wishlistId) => {
+    //  console.log(id, wishlistId);
+    //  setProductId(id)
+       const res = await axiosPublic.get(`/products/${id}`)
+        .then(res=>{
+           
+           return res?.data
+        })
+        .catch(err=>{
             console.log(err);
-         })
+        })
+
+        setSingleProduct(res)
       
         const productInfo = {
             userEmail: user?.email,
             userName: user?.displayName,
-            productName: product?.name,
-            productId: product?._id,
-            productImage: product?.image,
-            description: product?.description,
-            material: product?.material,
-            brand: product?.brand,
-            price: product?.price,
-            size: product?.size,
-            color: product?.color,
+            productName: singleProduct?.name,
+            productId: singleProduct?._id,
+            productImage: singleProduct?.image,
+            description: singleProduct?.description,
+            material: singleProduct?.material,
+            brand: singleProduct?.brand,
+            price: singleProduct?.price,
+            size: singleProduct?.size,
+            color: singleProduct?.color,
 
         }
         console.log(productInfo);
-        axiosPublic.post("/cart_products", productInfo)
+        
+        await axiosPublic.post("/cart_products", productInfo)
             .then(res => {
                 // console.log(res?.data);
                 if (res?.data?.success) {
@@ -85,7 +93,6 @@ const Wishlist = () => {
                         console.log(res.data);
                         if (res.data?.deletedCount) {
                             refetch()
-
                              Swal.fire({
                         position: "top-end",
                         icon: "success",
