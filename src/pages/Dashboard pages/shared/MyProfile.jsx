@@ -11,7 +11,7 @@ const MyProfile = () => {
         <div >
             <h1 className='text-lg'>Welcome <span className='font-semibold'> {userInformation?.name}</span></h1>
 
-            <div className='p-10 bg-base-100 rounded-2xl h-full flex gap-6 shadow my-5'>
+            <div className='p-10 bg-base-100  rounded-2xl h-full flex gap-6 shadow my-5'>
                 <div className=''>
                     <img className='h-24 w-24 rounded-full object-cover  ' src={user?.photoURL} alt="user photo" />
                     
