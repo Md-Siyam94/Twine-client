@@ -12,7 +12,7 @@ import Login from "../pages/Registration/Login"
 import Signup from "../pages/Registration/Signup"
 import Cart from "../pages/Cart/Cart";
 import Contact from "../pages/contact/Contact";
-import About from "../pages/about/About";
+import About from "../pages/About/Blog";
 import ProductDetails from "../pages/Product Details/ProductDetails";
 import Dashboard from "../layout/Dashboard";
 
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <Contact></Contact>,
       },
       {
-        path: "/about",
+        path: "/blog",
         element: <About></About>
       },
       {
