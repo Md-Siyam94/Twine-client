@@ -50,7 +50,7 @@ const Cart = () => {
     }
     return (
         <div className='grid grid-cols-12 gap-5 pb-16 px-20 pt-5'>
-            <div className="overflow-x-auto col-span-8">
+            <div className="overflow-x-auto lg:col-span-8 col-span-12">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -115,7 +115,7 @@ const Cart = () => {
                 </table>
             </div>
             {/* payment section */}
-            <div className='col-span-4 border h-screen rounded-xl'>
+            <div className='lg:col-span-4 col-span-12  border h-screen rounded-xl'>
                 <Feature></Feature>
             </div>
         </div>

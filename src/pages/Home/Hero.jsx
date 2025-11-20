@@ -19,7 +19,7 @@ import { FaShopify } from 'react-icons/fa6';
 
 const Hero = () => {
     return (
-        <div className='max-h-[calc(100vh-20vh)] px-30 flex py-10 lg:py-0  items-center'>
+        <div className='max-h-[calc(100vh-20vh)] lg:px-30 px-10 flex py-10 lg:py-0  items-center'>
             <div className='flex-1  mt-0 '>
                 <h1 className='lg:text-7xl md:text-5xl text-5xl font-semibold '>Twine Were House</h1>
                 <p className='mt-6 mb-9 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. At dolorum non explicabo corrupti provident, recusandae modi debitis placeat quibusdam minus!</p>

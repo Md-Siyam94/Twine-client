@@ -103,10 +103,10 @@ const Navbar = () => {
                         {
                             user ? <div> <div className="dropdown dropdown-end  dropdown-hover z-50">
                                 <div tabIndex={0} role="button" className=""> <img
-                                    className="h-10 w-10 rounded-full object-cover"
+                                    className="h-10 w-10  rounded-full object-cover"
                                     referrerPolicy="no-referrer"
                                     src={user?.photoURL}
-                                    alt="" /></div>
+                                    alt="user photo" /></div>
                                 <ul tabIndex={0} className="dropdown-content font-semibold menu bg-base-100  z-[1] w-52 p-2 shadow">
                                     <li><Link>{user?.displayName}</Link></li>
                                     <li><NavLink to={"/dashboard/profile"} className='hover:text-green-500  '><FaRegUser className='text-lg' /> My Account</NavLink></li>
