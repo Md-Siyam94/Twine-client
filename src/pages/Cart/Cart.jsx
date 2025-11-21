@@ -115,8 +115,12 @@ const Cart = () => {
                 </table>
             </div>
             {/* payment section */}
-            <div className='lg:col-span-4 col-span-12  border h-screen rounded-xl'>
-                <Feature></Feature>
+            <div className='lg:col-span-4 col-span-12 w-full  border h-[calc(100vh-150px)] p-5 rounded-xl'>
+                <h1 className='text-2xl font-semibold'>Payment Info</h1>
+                {/* todo: use strip for payment */}
+                <div className=''>
+                        <button className='text-xl font-semibold py-2 w-full rounded-lg bg-teal-700 text-white hover:bg-teal-800'>Order Now</button>
+                </div>
             </div>
         </div>
     );

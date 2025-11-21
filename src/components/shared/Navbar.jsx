@@ -26,7 +26,8 @@ const Navbar = () => {
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/products"}>Products</NavLink></li>
         <li><NavLink to={"/blog"}>Blog</NavLink></li>
-        <li><NavLink to={"/contact"}>Contact</NavLink></li>
+        <li><NavLink to={"/men"}>Men's</NavLink></li>
+        <li><NavLink to={"/women"}>Women's</NavLink></li>
     </>
 
     //    category wise navigation

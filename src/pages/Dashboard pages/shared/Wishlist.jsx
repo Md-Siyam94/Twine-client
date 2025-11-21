@@ -87,7 +87,7 @@ const [singleProduct, setSingleProduct] = useState({})
             .then(res => {
                 // console.log(res?.data);
                 if (res?.data?.success) {
-                    // ToDo: need to wishlist Id 
+                    // ToDo: fix bugs
                       axiosPublic.delete(`/wishlist/${wishlistId}`)
                     .then(res => {
                         console.log(res.data);

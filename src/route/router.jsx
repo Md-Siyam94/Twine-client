@@ -11,7 +11,7 @@ import Products from "../pages/AllProducts/Products";
 import Login from "../pages/Registration/Login"
 import Signup from "../pages/Registration/Signup"
 import Cart from "../pages/Cart/Cart";
-import Contact from "../pages/contact/Contact";
+
 import About from "../pages/About/Blog";
 import ProductDetails from "../pages/Product Details/ProductDetails";
 import Dashboard from "../layout/Dashboard";
@@ -21,6 +21,8 @@ import MyOrders from "../pages/Dashboard pages/shared/MyOrders";
 import Review from "../pages/Dashboard pages/shared/Review";
 import Wishlist from "../pages/Dashboard pages/shared/Wishlist";
 import AddProduct from "../pages/Dashboard pages/Admin pages/AddProduct";
+import Men from "../pages/Mens/Men";
+import Women from "../pages/Women/Women";
 
 
 
@@ -45,8 +47,12 @@ const router = createBrowserRouter([
         loader: ({params})=> fetch(`${import.meta.env.VITE_baseAPI}/products/${params.id}`)
       },
       {
-        path: '/contact',
-        element: <Contact></Contact>,
+        path: '/men',
+        element: <Men></Men>,
+      },
+      {
+        path: '/women',
+        element: <Women></Women>,
       },
       {
         path: "/blog",

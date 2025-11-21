@@ -45,9 +45,11 @@ const Dashboard = () => {
                                     isActive ? "text-green-500 " : " hover:text-green-500 "
                                 }><RiShoppingCartLine className='text-xl' /> Add Product</NavLink></li>
 
-                                <li><NavLink to={"/dashboard/my-reviews"} className={({ isActive }) =>
+                                {/* todo: make review page */}
+                                
+                                {/* <li><NavLink to={"/dashboard/my-reviews"} className={({ isActive }) =>
                                     isActive ? "text-green-500 " : " hover:text-green-500 "
-                                }><FaRegStar className='text-xl' /> Reviews</NavLink></li>
+                                }><FaRegStar className='text-xl' /> Reviews</NavLink></li> */}
 
                                 <li><NavLink to={"/dashboard/wishlist"} className={({ isActive }) =>
                                     isActive ? "text-green-500 " : " hover:text-green-500 "
@@ -66,9 +68,11 @@ const Dashboard = () => {
                                         isActive ? "text-green-500 " : " hover:text-green-500 "
                                     }><RiShoppingCartLine className='text-xl' /> My Orders</NavLink></li>
 
-                                    <li><NavLink to={"/dashboard/my-reviews"} className={({ isActive }) =>
+                                    {/* todo: make review page */}
+
+                                    {/* <li><NavLink to={"/dashboard/my-reviews"} className={({ isActive }) =>
                                         isActive ? "text-green-500 " : " hover:text-green-500 "
-                                    }><FaRegStar className='text-xl' /> Reviews</NavLink></li>
+                                    }><FaRegStar className='text-xl' /> Reviews</NavLink></li> */}
 
                                     <li><NavLink to={"/dashboard/wishlist"} className={({ isActive }) =>
                                         isActive ? "text-green-500 " : " hover:text-green-500 "
