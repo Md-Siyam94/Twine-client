@@ -3,8 +3,8 @@
 Twine is a modern e-commerce backend built with Node.js, Express.js, and MongoDB (Mongoose).
 It provides a clean API structure for product management, user authentication, cart handling, and wishlist functionality.
 
-- Live Link: [https://twinewere.netlify.app/]
-- Back-end github: [https://github.com/Md-Siyam94/Twine-server]
+- Live Link: ()https://twinewere.netlify.app/
+- Back-end github: ()https://github.com/Md-Siyam94/Twine-server
 
 ## Key Features
 
