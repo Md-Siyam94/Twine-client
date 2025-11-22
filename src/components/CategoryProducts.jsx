@@ -56,8 +56,9 @@ const CategoryProducts = ({ category }) => {
                                         {/* <p className=" text-sm">Price: <span className='text-md font-semibold'>{product?.price} {product?.currency}</span></p> */}
                                         <p className='text-sm'>Brand: <span className='text-md font-semibold'>{product?.brand}</span></p>
                                         <p className=' opacity-60'>{product?.description?.slice(0, 70)}...more</p>
-                                        <div className="card-actions justify-end">
-                                            <Link to={`/product-details/${product?._id}`} className=" border-b border-r py-1 px-4 rounded-2xl hover:text-green-400">View Details</Link>
+                                        <div className="card-actions  justify-end">
+                                            
+                                            <Link to={`/product-details/${product?._id}`} className=" bg-teal-600 text-white hover:bg-teal-700 py-1 px-4 rounded-lg  ">View Details</Link>
 
                                         </div>
                                     </div>

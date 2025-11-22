@@ -152,8 +152,8 @@ const AddProduct = () => {
                             </label><br />
                             <select {...register("targetAudience", { required: true })} defaultValue="choose a audience" className="select select-success">
                                 <option disabled={true}>choose a audience</option>
-                                <option value={"Man"}>Man</option>
-                                <option value={"Woman"}>Woman</option>
+                                <option value={"Men"}>Men</option>
+                                <option value={"Women"}>Women</option>
                                 <option value={"Kids"}>Kids</option>
                             </select>
                         </div>
