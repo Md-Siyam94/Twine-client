@@ -4,23 +4,23 @@ import useProducts from '../../hooks/useProducts';
 import ProductCard from '../../components/ProductCard'
 
 const Men = () => {
-    const [menProducts, setMenProducts] = useState([])
+    const [products, setProducts] = useState([])
 
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_baseAPI}/products/men-products`)
         .then(res=> res.json())
         .then(data=>{
-            console.log(data);
-            setMenProducts(data)
+            // console.log(data);
+            setProducts(data)
         })
     },[])
 
-   
+//    console.log(products);
     return (
         <div className='px-20 py-4'>
-           <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 '>
+           <div className='grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4 '>
             {
-                menProducts.map((menProduct)=> <ProductCard key={menProduct._id} menProduct={menProduct}></ProductCard>)
+                products.map((product, index)=> <ProductCard key={index} product={product}></ProductCard> )
             }
            </div>
         </div>

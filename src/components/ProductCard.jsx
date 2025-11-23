@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SwiperSlide } from 'swiper/react';
 
-const ProductCard = ({ product }) => {
-    // console.log(product);
+const ProductCard = ({product}) => {
+    console.log(product);
     return (
         <SwiperSlide>
            <div className="card bg-base-100 h-full shadow-sm   ">
