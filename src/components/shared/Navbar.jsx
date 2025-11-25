@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { ReactTyped } from 'react-typed';
 
 
 
@@ -19,6 +20,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 const Navbar = () => {
     const { user, logOutUser } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [search, setSearch] = useState('')
     const location = useLocation()
     const path = location.pathname.slice(0, 10)
 
@@ -50,6 +52,8 @@ const Navbar = () => {
                 console.log("error from log out", err);
             })
     }
+
+    console.log(search);
     return (
         <div>
             <div className="navbar  justify-between py-5 px-20 bg-base-100  shadow-sm">
@@ -85,7 +89,38 @@ const Navbar = () => {
                                 <path d="m21 21-4.3-4.3"></path>
                             </g>
                         </svg>
-                        <input className='focus:outline-0 w-md' type="search" placeholder="Search products..." />
+                        <ReactTyped
+                       
+                            attr="placeholder"
+                            backSpeed={100}
+                            onBegin={function noRefCheck() { }}
+                            onComplete={function noRefCheck() { }}
+                            onDestroy={function noRefCheck() { }}
+                            onLastStringBackspaced={function noRefCheck() { }}
+                            onReset={function noRefCheck() { }}
+                            loop={true}
+                         
+                            onStringTyped={function noRefCheck() { }}
+                            onTypingPaused={function noRefCheck() { }}
+                            onTypingResumed={function noRefCheck() { }}
+                            strings={[
+                                'T-shirt',
+                                'Panjabi',
+                                'Saree',
+                                'Pant',
+                                'Product'
+                            ]}
+                            typeSpeed={100}
+                            typedRef={function noRefCheck() { }}
+                        >
+                            <input
+                                 className='focus:outline-0 w-md'
+                                type="search"
+                                placeholder="Search products..."
+                                onChange={e=> setSearch(e.target.value)}
+                            />
+                        </ReactTyped>
+                      
                     </label>
                 </div>
 
@@ -121,10 +156,7 @@ const Navbar = () => {
                             </div>
                         }
                         <Link to={'/cart'} className=''><RiShoppingCartLine className='text-3xl' /></Link>
-
                     </div>
-
-
                 </div>
 
             </div>

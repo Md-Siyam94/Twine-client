@@ -23,6 +23,7 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.3",
     "react-slick": "^0.31.0",
+    "react-typed": "^2.0.12",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.26.3",
     "swiper": "^12.0.2",

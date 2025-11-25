@@ -1,21 +1,15 @@
 import {
   createBrowserRouter,
-
 } from "react-router-dom";
-
-
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
-
 import Products from "../pages/AllProducts/Products";
 import Login from "../pages/Registration/Login"
 import Signup from "../pages/Registration/Signup"
 import Cart from "../pages/Cart/Cart";
-
 import About from "../pages/About/Blog";
 import ProductDetails from "../pages/Product Details/ProductDetails";
 import Dashboard from "../layout/Dashboard";
-
 import MyProfile from "../pages/Dashboard pages/shared/MyProfile";
 import MyOrders from "../pages/Dashboard pages/shared/MyOrders";
 import Review from "../pages/Dashboard pages/shared/Review";
@@ -44,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/product-details/:id",
         element: <ProductDetails></ProductDetails>,
-        loader: ({params})=> fetch(`${import.meta.env.VITE_baseAPI}/products/${params.id}`)
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_baseAPI}/products/${params.id}`)
       },
       {
         path: '/men',
