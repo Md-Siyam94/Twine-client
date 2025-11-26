@@ -6,7 +6,7 @@ const Women = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_baseAPI}/products/women-products`)
+        fetch(`${import.meta.env.VITE_baseAPI}/products/women/products`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data)

@@ -7,13 +7,13 @@ const Men = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_baseAPI}/products/men-products`)
+        fetch(`${import.meta.env.VITE_baseAPI}/products/men/products`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data)
             })
     }, [])
-
+    console.log(products);
 
     return (
         <div className='px-20 py-4'>

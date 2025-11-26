@@ -14,18 +14,15 @@ const ProductDetails = () => {
     const [products, setProducts] = useState([])
     const { user } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
-    console.log(products, params);
     const { name, description, price, _id, currency, size, color, inStock, material, brand, image, category } = product || {}
-
-
-    console.log(category);
 
     // getting products by category 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_baseAPI}/products/category-products/${category}`)
             .then(res => res.json())
             .then(data => {
-                setProducts(data)
+                const products = data.filter(p => p._id !== _id)
+                setProducts(products)
             })
     }, [category])
 
@@ -45,10 +42,8 @@ const ProductDetails = () => {
             color: color,
 
         }
-        // console.log(productInfo);
         axiosPublic.post("/cart_products", productInfo)
             .then(res => {
-                // console.log(res?.data);
                 if (res?.data?.success) {
                     Swal.fire({
                         position: "top-end",
@@ -146,17 +141,18 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-span-3 px-4 lg:h-screen overflow-y-scroll">
+            <div className="col-span-3 px-4 lg:max-h-[calc(100vh-130px)] overflow-y-scroll">
                 <h1 className="text-xl font-semibold ">More products</h1>
                 <div>
+
                     {
-                        products.map((signleProduct)=> <Link key={signleProduct?._id}  className="py-2 my-2  flex gap-4 border-b border-b-gray-400 ">
+                        products.map((signleProduct) => <Link to={`/product-details/${signleProduct?._id}`} key={signleProduct?._id} className="py-2 my-2  flex gap-4 border-b border-b-gray-400 ">
                             <img className="h-16 w-16 object-cover" src={signleProduct?.image} alt="product image" />
                             <div>
                                 <h2>{signleProduct?.name}</h2>
                                 <p className="text-sm">Brand: {signleProduct?.brand}</p>
                             </div>
-                           
+
                         </Link>)
                     }
                 </div>
