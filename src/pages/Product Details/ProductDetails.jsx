@@ -14,20 +14,20 @@ const ProductDetails = () => {
     const [products, setProducts] = useState()
     const { user } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
+    console.log(products, params);
     const { name, description, price, _id, currency, size, color, inStock, material, brand, image, category } = product || {}
 
-    const singleSize = size.join(", ")
-    const singleColor = color.join(", ")
-    console.log(products);
+
+    console.log(category);
 
     // getting products by category 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_baseAPI}/products/${category}`)
-        .then(res=> res.json())
-        .then(data=>{
-            setProducts(data)
-        })
-    }, [])
+        fetch(`${import.meta.env.VITE_baseAPI}/products/category-products/${category}`)
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data)
+            })
+    }, [category])
 
     // product add to card
     const handleAddToCart = (id) => {
@@ -135,9 +135,9 @@ const ProductDetails = () => {
                     <p className=" my-4 text-gray-500">Category: <span className="text-blue-500  ">{category}</span></p>
 
                     <p className="my-4">{inStock ? <div className="text-green-500">In Stock</div> : <div className="text-red-500">Not available</div>}</p>
-                    <p className="flex  gap-2"> Size: {singleSize}
+                    <p className="flex  gap-2"> Size: {size?.join(", ")}
                     </p>
-                    <p className="flex gap-2 my-4">color: {singleColor}
+                    <p className="flex gap-2 my-4">color: {color?.join(", ")}
                     </p>
                     <p>TK. <span className="text-lg font-semibold">{price} {currency}</span></p>
                     <div className="my-6 flex gap-4">
@@ -147,7 +147,14 @@ const ProductDetails = () => {
                 </div>
             </div>
             <div className="col-span-3 ">
-                {/* <CategoryProducts category={category}></CategoryProducts> */}
+                <h1>More products</h1>
+                <div>
+                    {
+                        products.map((signleProduct)=> <Link key={signleProduct?._id}  className="py-2 my-2">
+                            <img className="h-16 w-16 object-cover" src={signleProduct?.image} alt="product image" />
+                        </Link>)
+                    }
+                </div>
             </div>
         </div>
     );
