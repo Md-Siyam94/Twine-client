@@ -10,8 +10,8 @@ import Swal from "sweetalert2";
 
 const ProductDetails = () => {
     const params = useParams()
-    const product = useLoaderData()
-    const [products, setProducts] = useState()
+    const product = useLoaderData({})
+    const [products, setProducts] = useState([])
     const { user } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     console.log(products, params);
@@ -118,7 +118,7 @@ const ProductDetails = () => {
             })
     }
     return (
-        <div className="w-10/12 py-14  mx-auto mt-5 rounded-2xl shadow grid grid-cols-12 ">
+        <div className="w-10/12 py-14  mx-auto mt-5 rounded-2xl grid grid-cols-12 ">
             <div className="flex  bg-base-100 col-span-9 py-4 shadow-sm">
                 <figure className="px-10 ">
                     <img
@@ -146,12 +146,17 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-span-3 ">
-                <h1>More products</h1>
+            <div className="col-span-3 px-4 lg:h-screen overflow-y-scroll">
+                <h1 className="text-xl font-semibold ">More products</h1>
                 <div>
                     {
-                        products.map((signleProduct)=> <Link key={signleProduct?._id}  className="py-2 my-2">
+                        products.map((signleProduct)=> <Link key={signleProduct?._id}  className="py-2 my-2  flex gap-4 border-b border-b-gray-400 ">
                             <img className="h-16 w-16 object-cover" src={signleProduct?.image} alt="product image" />
+                            <div>
+                                <h2>{signleProduct?.name}</h2>
+                                <p className="text-sm">Brand: {signleProduct?.brand}</p>
+                            </div>
+                           
                         </Link>)
                     }
                 </div>
