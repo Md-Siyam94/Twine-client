@@ -104,11 +104,14 @@ const Navbar = () => {
                             onTypingPaused={function noRefCheck() { }}
                             onTypingResumed={function noRefCheck() { }}
                             strings={[
-                                'T-shirt',
-                                'Panjabi',
-                                'Saree',
-                                'Pant',
-                                'Product'
+                                'Search: panjabi',
+                                'search: t-shirt',
+                                'Search: pant',
+                                'search: saree',
+                                'Search: product',
+                                'search: man were',
+                                'Search: woman',
+                                'search: kids'
                             ]}
                             typeSpeed={100}
                             typedRef={function noRefCheck() { }}

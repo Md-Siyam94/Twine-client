@@ -2,7 +2,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import CategoryProducts from "../../components/CategoryProducts";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -11,14 +11,25 @@ import Swal from "sweetalert2";
 const ProductDetails = () => {
     const params = useParams()
     const product = useLoaderData()
+    const [products, setProducts] = useState()
     const { user } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const { name, description, price, _id, currency, size, color, inStock, material, brand, image, category } = product || {}
 
     const singleSize = size.join(", ")
     const singleColor = color.join(", ")
+    console.log(products);
 
+    // getting products by category 
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_baseAPI}/products/${category}`)
+        .then(res=> res.json())
+        .then(data=>{
+            setProducts(data)
+        })
+    }, [])
 
+    // product add to card
     const handleAddToCart = (id) => {
         const productInfo = {
             userEmail: user?.email,
@@ -46,7 +57,7 @@ const ProductDetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                }else{
+                } else {
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -62,7 +73,7 @@ const ProductDetails = () => {
     }
 
 
-
+    // add product in wishlist
     const handleAddToWishlist = (id) => {
         const productInfo = {
             userEmail: user?.email,
@@ -92,7 +103,7 @@ const ProductDetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                }else{
+                } else {
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
