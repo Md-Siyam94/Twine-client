@@ -117,7 +117,7 @@ const ProductDetails = () => {
             <div className="flex  bg-base-100 col-span-9 py-4 shadow-sm">
                 <figure className="px-10 ">
                     <img
-                        className="h-96  p-7 "
+                        className="h-96 w-96 p-7 "
                         src={image}
                         alt={category} />
                 </figure>
@@ -136,8 +136,8 @@ const ProductDetails = () => {
                     </p>
                     <p>TK. <span className="text-lg font-semibold">{price} {currency}</span></p>
                     <div className="my-6 flex gap-4">
-                        <button onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10  rounded-lg bg-teal-400 hover:bg-teal-500 hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
-                        <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 rounded-lg bg-teal-400 hover:bg-teal-500 hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
+                        <button  onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10  rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
+                        <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
                     </div>
                 </div>
             </div>

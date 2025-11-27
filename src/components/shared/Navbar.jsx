@@ -92,7 +92,8 @@ const Navbar = () => {
                         <ReactTyped
                        
                             attr="placeholder"
-                            backSpeed={100}
+                           fadeOut={true}
+                           fadeOutDelay={0}
                             onBegin={function noRefCheck() { }}
                             onComplete={function noRefCheck() { }}
                             onDestroy={function noRefCheck() { }}
@@ -105,13 +106,13 @@ const Navbar = () => {
                             onTypingResumed={function noRefCheck() { }}
                             strings={[
                                 'Search: panjabi',
-                                'search: t-shirt',
+                                'Search: t-shirt',
                                 'Search: pant',
-                                'search: saree',
+                                'Search: saree',
                                 'Search: product',
-                                'search: man were',
+                                'Search: man were',
                                 'Search: woman',
-                                'search: kids'
+                                'Search: kids'
                             ]}
                             typeSpeed={100}
                             typedRef={function noRefCheck() { }}

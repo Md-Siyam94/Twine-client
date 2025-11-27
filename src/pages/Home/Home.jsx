@@ -17,9 +17,9 @@ const Home = () => {
             <section>
                 <Hero></Hero>
             </section>
-            <section className='w-11/12 px-16 mx-auto py-24'>
+            {/* <section className='w-11/12 px-16 mx-auto py-24'>
                 <TargetAudiance></TargetAudiance>
-            </section>
+            </section> */}
             <section>
             <CategoryProducts category={"T-shirt"}></CategoryProducts>
             </section>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useCartProducts from '../../hooks/useCartProducts';
 import { motion } from "motion/react"
 import Feature from '../../components/Feature';
@@ -10,9 +10,22 @@ import { div } from 'motion/react-client';
 const Cart = () => {
     const [cartProdcuts, refetch] = useCartProducts()
     const axiosPublic = useAxiosPublic()
+    const [selected, setSelected] = useState([]);
 
-    // const singleSize = size.join(", ")
-    // const singleColor = color.join(", ")
+    // total price
+    const totalPrice = selected.reduce((sum, pro) => sum + pro?.price, 0)
+    // console.log(totalPrice);
+
+    // get product form checkbox
+    const handleChange = (e) => {
+        const product = JSON.parse(e.target.value);
+        if (e.target.checked) {
+            setSelected([...selected, product]);
+        } else {
+            setSelected(selected.filter(item => item?._id !== product?._id));
+        }
+    };
+    console.log(selected);
 
     // delete product from cart
     const handleCancel = (id) => {
@@ -49,16 +62,16 @@ const Cart = () => {
 
     }
     return (
-        <div className='grid grid-cols-12 gap-5 pb-16 px-20 pt-5'>
+        <div className='grid grid-cols-12 gap-5 h-screen overflow-y-scroll pb-16 px-20 pt-5'>
             <div className="overflow-x-auto lg:col-span-8 col-span-12">
                 <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
-
+                            <th>Select</th>
                             <th>Image</th>
-                            <th>Description</th>
-                            <th>Job</th>
+                            <th>Details</th>
+                            <th>Quantity</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -66,6 +79,10 @@ const Cart = () => {
                         {
                             cartProdcuts.map(cartProdcut => {
                                 return <tr key={cartProdcut?._id}>
+                                    <td>
+                                        <input type="checkbox" onClick={handleChange} value={JSON.stringify(cartProdcut)}
+                                            className="checkbox checkbox-md" />
+                                    </td>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
@@ -83,12 +100,12 @@ const Cart = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{cartProdcut?.description}</td>
                                     <td>
-                                      <span>color: {cartProdcut?.color?.join(", ")}</span>
+                                        <span>color: {cartProdcut?.color?.join(", ")}</span>
                                         <br />
                                         <span className="badge badge-ghost badge-sm">size: {cartProdcut?.size?.join(", ")}</span>
                                     </td>
+                                    <td className='text-lg'>-  1  +</td>
                                     <th>
                                         <motion.div
 
@@ -115,11 +132,19 @@ const Cart = () => {
                 </table>
             </div>
             {/* payment section */}
-            <div className='lg:col-span-4 col-span-12 w-full  border h-[calc(100vh-150px)] p-5 rounded-xl'>
+            <div className='lg:col-span-4 col-span-12 w-full grid shadow max-h-[calc(100vh-150px)] p-5 rounded-xl'>
                 <h1 className='text-2xl font-semibold'>Payment Info</h1>
                 {/* todo: use strip for payment */}
-                <div className=''>
-                        <button className='text-xl font-semibold py-2 w-full rounded-lg bg-teal-700 text-white hover:bg-teal-800'>Order Now</button>
+                <div className=' '>
+                    <div className='flex w-full justify-between my-8'>
+                        <h2 className='text-lg font-semibold'>Total products</h2>
+                        <p className='text-lg font-semibold'>{selected?.length}</p>
+                    </div>
+                    <div className='flex w-full justify-between my-8'>
+                        <h2 className='text-lg font-semibold'>Total price</h2>
+                        <p className='text-lg font-semibold'>{totalPrice} Tk</p>
+                    </div>
+                    <button className='text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'>Order Now</button>
                 </div>
             </div>
         </div>
