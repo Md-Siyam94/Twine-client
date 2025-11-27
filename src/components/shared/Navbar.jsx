@@ -53,7 +53,7 @@ const Navbar = () => {
             })
     }
 
-    console.log(search);
+    // console.log(search);
     return (
         <div>
             <div className="navbar  justify-between py-5 px-20 bg-base-100  shadow-sm">
@@ -156,7 +156,7 @@ const Navbar = () => {
                                     <li><button onClick={handleLogOut}><FiLogOut className='text-xl' /> Log out</button></li>
                                 </ul>
                             </div>
-                            </div> : <div className="flex gap-2"> <Link to={'/login'} className='py-3 px-6 flex items-center gap-2  border rounded-full hover:bg-green-400 hover:text-white '><FaRegCircleUser className='text-xl ' /> Sign up</Link>
+                            </div> : <div className="flex gap-2"> <Link to={'/login'} className='py-3 px-6 flex items-center gap-2  border rounded-full hover:bg-teal-600 hover:text-white '><FaRegCircleUser className='text-xl ' /> Sign up</Link>
                             </div>
                         }
                         <Link to={'/cart'} className=''><RiShoppingCartLine className='text-3xl' /></Link>
