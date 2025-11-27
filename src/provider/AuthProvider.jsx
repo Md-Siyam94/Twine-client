@@ -1,58 +1,61 @@
-import {createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, } from "firebase/auth"
 import auth from "../firebase_init";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext()
 
-const AuthProvider = ({children}) => {
-
+const AuthProvider = ({ children }) => {
+    const axiosPublic = useAxiosPublic()
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider()
 
-    
-    const googleLogin = ()=>{
+
+    const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
 
-    const signIn = (email, password)=>{
+    const signIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const signUp = (email, password)=>{
+    const signUp = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const updateUserProfile=(userData)=>{
+    const updateUserProfile = (userData) => {
         setLoading(true)
-        return updateProfile(auth.currentUser,userData)
+        return updateProfile(auth.currentUser, userData)
     }
 
-    const logOutUser =()=>{
-        
+    const logOutUser = () => {
+        setLoading(true)
         return signOut(auth)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if(currentUser){
-                console.log("currentUser" , currentUser);
-                setUser(currentUser);
-                setLoading(false)
-            }
-            else{
-                setLoading(false)
-            }
+
+            console.log("from observer", currentUser);
+            setUser(currentUser);
+            setLoading(false)
+            // if (currentUser) {
+
+            // }
+            // else {
+            //     setLoading(false)
+            // }
         })
 
-        return ()=> {
+        return () => {
             return unsubscribe()
         }
-    },[])
+    }, [])
 
     const info = {
         user,

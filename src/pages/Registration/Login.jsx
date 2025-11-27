@@ -44,13 +44,13 @@ const Login = () => {
                                 {/* email */}
                                 <label className="label">Email</label>
                                 <input type="email" {...register("email", {required: true})} className="input" placeholder="Email" />
-                                {errors.email && <span className='font-semibold  text-red-500'>This field is required</span>}
+                                {errors.email && <span className=' text-red-500'>This field is required</span>}
                                 {/* password */}
                                 <label className="label">Password</label>
                                 <input type="password"  {...register("password", {required: true})} className="input" placeholder="Password" />
-                                {errors.password && <span className='font-semibold  text-red-500'>This field is required</span>}
+                                {errors.password && <span className=' text-red-500'>This field is required</span>}
                                 <div><a className="link link-hover ">Forgot password?</a></div>
-                                <p className='font-semibold  text-red-500'>{error}</p>
+                                <p className=' text-red-500'>{error}</p>
                                 <button className="btn bg-teal-600 hover:bg-teal-700 text-white rounded-full mt-4"><MdOutlineLogin className='text-xl' />Login</button>
                                 <p className='text-center my-2'>Have not any Account ? please <Link to={'/signup'} className='text-blue-600 '>Sign Up</Link></p>
                                 <div><GoogleLogin></GoogleLogin></div>
