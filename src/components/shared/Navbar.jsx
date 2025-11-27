@@ -25,11 +25,21 @@ const Navbar = () => {
     const path = location.pathname.slice(0, 10)
 
     const links = <>
-        <li><NavLink to={"/"}>Home</NavLink></li>
-        <li><NavLink to={"/products"}>Products</NavLink></li>
-        <li><NavLink to={"/blog"}>Blog</NavLink></li>
-        <li><NavLink to={"/men"}>Men's</NavLink></li>
-        <li><NavLink to={"/women"}>Women's</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
+        } to={"/"}>Home</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
+        } to={"/products"}>Products</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
+        } to={"/blog"}>Blog</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
+        } to={"/men"}>Men's</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
+        } to={"/women"}>Women's</NavLink></li>
     </>
 
     //    category wise navigation
@@ -90,17 +100,17 @@ const Navbar = () => {
                             </g>
                         </svg>
                         <ReactTyped
-                       
+
                             attr="placeholder"
-                           fadeOut={true}
-                           fadeOutDelay={0}
+                            fadeOut={true}
+                            fadeOutDelay={0}
                             onBegin={function noRefCheck() { }}
                             onComplete={function noRefCheck() { }}
                             onDestroy={function noRefCheck() { }}
                             onLastStringBackspaced={function noRefCheck() { }}
                             onReset={function noRefCheck() { }}
                             loop={true}
-                         
+
                             onStringTyped={function noRefCheck() { }}
                             onTypingPaused={function noRefCheck() { }}
                             onTypingResumed={function noRefCheck() { }}
@@ -118,13 +128,13 @@ const Navbar = () => {
                             typedRef={function noRefCheck() { }}
                         >
                             <input
-                                 className='focus:outline-0 w-md'
+                                className='focus:outline-0 w-md'
                                 type="search"
                                 placeholder="Search products..."
-                                onChange={e=> setSearch(e.target.value)}
+                                onChange={e => setSearch(e.target.value)}
                             />
                         </ReactTyped>
-                      
+
                     </label>
                 </div>
 

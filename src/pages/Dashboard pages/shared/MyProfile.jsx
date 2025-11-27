@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useUser from '../../../hooks/useUser';
+import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 
 const MyProfile = () => {
     const {user} = useContext(AuthContext)
@@ -20,6 +21,7 @@ const MyProfile = () => {
                 <div >
                     <h2>{userInformation?.name}</h2>
                     <p>{userInformation?.email}</p>
+                    <p className='opacity-60 text-sm flex gap-2 my-2'><MdOutlineAdminPanelSettings className='text-xl' /> <span >{userInformation?.role}</span></p>
                 </div>
             </div>
             <div className='grid grid-cols-4 justify-evenly items-center gap-5 my-10 '>

@@ -8,6 +8,7 @@ import { RiShoppingCartLine } from 'react-icons/ri';
 import { GoHeart } from 'react-icons/go';
 import { FiLogOut } from 'react-icons/fi';
 import useUser from '../hooks/useUser';
+import { MdOutlineAddBusiness } from 'react-icons/md';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
@@ -43,7 +44,7 @@ const Dashboard = () => {
 
                                 <li><NavLink to={"/dashboard/add-product"} className={({ isActive }) =>
                                     isActive ? "text-green-500 " : " hover:text-green-500 "
-                                }><RiShoppingCartLine className='text-xl' /> Add Product</NavLink></li>
+                                }><MdOutlineAddBusiness className='text-xl' /> Add Product</NavLink></li>
 
                                 {/* todo: make review page */}
                                 

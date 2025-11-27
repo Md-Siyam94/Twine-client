@@ -6,6 +6,8 @@ import { AiTwotoneDelete } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { AuthContext } from '../../../provider/AuthProvider';
+import Lottie from 'lottie-react';
+import noData from "../../../../public/noData.json"
 // import useGetSingleProduct from '../../../hooks/useGetSingleProduct';
 
 const Wishlist = () => {
@@ -136,8 +138,12 @@ const [singleProduct, setSingleProduct] = useState({})
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='border  '>
                         {
+                            wishlistProducts.length === 0 ? <div className='w-full border mx-auto grid'>
+                                <Lottie className='h-80 w-full ' animationData={noData } loop></Lottie>
+                            </div> : <div>
+                                 {
                             wishlistProducts.map(wishlistProduct => {
                                 return <tr key={wishlistProduct?._id}>
                                     <td>
@@ -188,6 +194,9 @@ const [singleProduct, setSingleProduct] = useState({})
                                 </tr>
                             })
                         }
+                            </div>
+                        }
+                       
                     </tbody>
                 </table>
             </div>
