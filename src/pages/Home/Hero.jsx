@@ -1,21 +1,7 @@
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-// import slider1 from '../../assets/front-view-stack-books-with-copy-space.jpg'
-import slider2 from '../../assets/rm347-sasi-banner-15.jpg'
-import slider3 from '../../assets/8620842.jpg'
 import Backgound from '../../assets/creative-rounded-lines-edge-place-text-business-brochure-banner-poster-template-background.png'
 import Photo from '../../assets/handsome-confident-young-curly-haired-man-drinking-coffee-standing-infront-isolated-white-wall.png'
-
-// Import Swiper styles
-// import 'swiper/css';
-// import 'swiper/css/pagination';
-
-
-import { Autoplay, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { FaShopify } from 'react-icons/fa6';
-
-
 
 const Hero = () => {
     return (
@@ -28,26 +14,6 @@ const Hero = () => {
             <div className='flex-1  hidden lg:block '>
                 <img className='h-96 absolute ml-40 -z-40' src={Backgound} alt="" />
                 <img className='h-[580px] ml-35 ' src={Photo} alt="" />
-            </div>
-            <div>
-                {/* <Swiper
-                slidesPerView={1}
-                spaceBetween={30}
-                loop={true}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[Pagination, Autoplay, ]}
-                className="mySwiper h-[calc(100vh-25vh)] "
-            >
-               
-                <SwiperSlide><img className='object-cover ' src={slider2} alt="" /></SwiperSlide>
-                <SwiperSlide><img className='object-cover ' src={slider3} alt="" /></SwiperSlide>
-               
-               
-               
-                
-            </Swiper> */}
             </div>
         </div>
     );
