@@ -42,6 +42,7 @@ const ProductDetails = () => {
             color: color,
 
         }
+        console.log(productInfo);
         axiosPublic.post("/cart_products", productInfo)
             .then(res => {
                 if (res?.data?.success) {

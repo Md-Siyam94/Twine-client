@@ -6,6 +6,8 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { div } from 'motion/react-client';
+import Lottie from 'lottie-react';
+import noData from '../../../public/noData.json'
 
 const Cart = () => {
     const [cartProdcuts, refetch] = useCartProducts()
@@ -62,8 +64,10 @@ const Cart = () => {
 
     }
     return (
-        <div className='grid grid-cols-12 gap-5 h-screen overflow-y-scroll pb-16 px-20 pt-5'>
+        <div className='grid grid-cols-12 gap-5 max-h-screen[calc(100vh-100px)] overflow-y-scroll pb-16 px-20 pt-5'>
             <div className="overflow-x-auto lg:col-span-8 col-span-12">
+                {
+                    cartProdcuts.length > 0 ? 
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -72,7 +76,7 @@ const Cart = () => {
                             <th>Image</th>
                             <th>Details</th>
                             <th>Quantity</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,7 +133,15 @@ const Cart = () => {
                             })
                         }
                     </tbody>
-                </table>
+                </table> : <div >
+
+                        <Lottie className='h-72 w-full ' animationData={noData} loop></Lottie>
+                        <h1 className='text-xl font-semibold text-center'>You haven't added any products to your cart.</h1>
+                        <div className='my-3 grid justify-center '>
+                            <Link to={"/products"} className='py-2 px-5 w-full mx-auto  rounded-full bg-teal-600 text-white hover:bg-teal-700'>Let's Shoping</Link>
+                        </div>
+                    </div> 
+                }
             </div>
             {/* payment section */}
             <div className='lg:col-span-4 col-span-12 w-full grid shadow max-h-[calc(100vh-150px)] p-5 rounded-xl'>
@@ -144,7 +156,7 @@ const Cart = () => {
                         <h2 className='text-lg font-semibold'>Total price</h2>
                         <p className='text-lg font-semibold'>{totalPrice} Tk</p>
                     </div>
-                    <button className='text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'>Order Now</button>
+                    <button className='text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'>Buy Products</button>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import Footer from '../components/shared/Footer';
 import { AuthContext } from '../provider/AuthProvider';
 import { FaRegStar, FaRegUser } from 'react-icons/fa6';
 import { RiShoppingCartLine } from 'react-icons/ri';
-import { GoHeart } from 'react-icons/go';
+import { GoHeart, GoHome } from 'react-icons/go';
 import { FiLogOut } from 'react-icons/fi';
 import useUser from '../hooks/useUser';
 import { MdOutlineAddBusiness } from 'react-icons/md';
@@ -28,12 +28,12 @@ const Dashboard = () => {
                 <Navbar></Navbar>
             </div>
             <div className='grid grid-cols-12 lg:px-20 px-4 gap-4 min-h-[calc(100vh-100px)] bg-base-200 pt-4 '>
-                <div className='lg:col-span-3 hidden lg:block '>
-                    <ul className='font-semibold menu bg-base-100 rounded-xl shadow  z-[1] w-full gap-4 p-2'>
+                <div className='lg:col-span-3  hidden lg:block '>
+                    <ul className='font-semibold menu bg-base-100 py-6 rounded-xl shadow  z-[1] w-full gap-4 p-2'>
                         {
-                            isAdmin ? <div><li><Link to={"/dashboard/profile"}>
-                                <img className='h-12 w-12 rounded-full object-cover' src={user?.photoURL} alt="user photo" />
-                                {user?.displayName}</Link></li>
+                            isAdmin ? <div><li><NavLink to={"/"} className={({ isActive }) =>
+                                    isActive ? "text-green-500 " : " hover:text-green-500 "
+                                }><GoHome className='text-xl' /> Home</NavLink></li>
                                 <li>  <NavLink className={({ isActive }) =>
                                     isActive ? "text-green-500 " : " hover:text-green-500 "
                                 } to={"/dashboard/profile"} ><FaRegUser className='text-lg' /> My Account</NavLink></li>
