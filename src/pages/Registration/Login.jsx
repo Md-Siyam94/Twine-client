@@ -28,15 +28,15 @@ const Login = () => {
        }
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="hero-content flex-col lg:flex-row">
-                <div className="text-center lg:text-left">
+            <div className="hero-content w-11/12 flex-col lg:flex-row">
+                <div className="text-center hidden lg:block lg:text-left">
 
                     <p className="py-6">
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm py-10 shrink-0 shadow-2xl">
+                <div className="card bg-base-100 md:max-w-sm lg:max-w-md w-full mx-auto py-10 shrink-0 shadow-2xl">
                     <div className="card-body">
                         <h1 className="text-xl text-center font-bold">Login now!</h1>
                         <form onSubmit={handleSubmit(onSubmit)} >

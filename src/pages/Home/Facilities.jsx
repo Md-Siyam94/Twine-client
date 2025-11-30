@@ -6,14 +6,14 @@ import Icon4 from "../../assets/gift.png"
 
 const Facilities = () => {
     return (
-        <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 bg-base-200 py-24 px-20 mx-auto items-center '>
+        <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 bg-base-200 py-24 px-4 lg:px-20 mx-auto items-center '>
             <div className='py-14 rounded-2xl bg-base-100 shadow px-2 '>
                 <img className='h-12 w-12 ' src={Icon1} alt="Icon" />
                 <h1 className='text-lg my-5 font-semibold'>Sustainable Materials</h1>
                 <p className=''>Experience eco-friendly shopping with products made from sustainably sourced materials.</p>
             </div>
 
-            <div className='py-14 rounded-2xl bg-base-100 shadow px-2 '>
+            <div className='py-14  rounded-2xl bg-base-100 shadow px-2 '>
                 <img className='h-12 w-12 ' src={Icon2} alt="Icon" />
                 <h1 className='text-lg my-5 font-semibold'>30 Days Free Returns</h1>
                 <p className=''>Shop with complete confidence, knowing you’re covered by our 30-day free return policy on all of our products.</p>

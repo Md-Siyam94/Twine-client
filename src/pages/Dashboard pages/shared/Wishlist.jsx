@@ -129,7 +129,7 @@ const Wishlist = () => {
                 {
                     wishlistProducts.length === 0 ? <div className='h-screen'>
 
-                        <Lottie className='h-72 w-full ' animationData={noData} loop></Lottie>
+                        <Lottie className='lg:h-72 lg:w-72 h-56' animationData={noData} loop></Lottie>
                         <h1 className='text-xl font-semibold text-center'>You haven't added any products to your wishlist.</h1>
                         <div className='my-3 grid justify-center '>
                             <Link to={"/products"} className='py-2 px-5 w-full mx-auto  rounded-full bg-teal-600 text-white hover:bg-teal-700'>Let's Shoping</Link>

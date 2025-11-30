@@ -43,7 +43,7 @@ const CategoryProducts = ({ category }) => {
                                     <Link to={`/product-details/${product?._id}`}>
                                         <figure>
                                             <img
-                                                className='lg:h-40 h-80 '
+                                                className='lg:h-40 h-64 '
                                                 src={product?.image}
                                                 alt={product?.category} />
                                         </figure>
