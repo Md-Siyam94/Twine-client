@@ -17,6 +17,7 @@ import Wishlist from "../pages/Dashboard pages/shared/Wishlist";
 import AddProduct from "../pages/Dashboard pages/Admin pages/AddProduct";
 import Men from "../pages/Mens/Men";
 import Women from "../pages/Women/Women";
+import AdminDashboard from "../pages/Dashboard pages/Admin pages/AdminDashboard";
 
 
 
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <MyProfile></MyProfile>
+      },
+      {
+        path: '/dashboard/admin-dashboard',
+        element: <AdminDashboard></AdminDashboard>
       },
       {
         path: "/dashboard/my-orders",

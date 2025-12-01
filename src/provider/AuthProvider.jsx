@@ -5,6 +5,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext()
 
+
 const AuthProvider = ({ children }) => {
     const axiosPublic = useAxiosPublic()
     const [user, setUser] = useState(null);
@@ -44,12 +45,20 @@ const AuthProvider = ({ children }) => {
             console.log("from observer", currentUser);
             setUser(currentUser);
             setLoading(false)
-            // if (currentUser) {
+            if (currentUser) {
+                const userInfo = {email: currentUser.email}
+                axiosPublic.post('/jwt', userInfo)
+                .then(res=>{
+                    if(res.data?.token){
+                        localStorage.setItem('access-token', res.data.token)
+                    }
+                })
 
-            // }
-            // else {
-            //     setLoading(false)
-            // }
+            }
+            else {
+                localStorage.removeItem('access-token')
+                setLoading(false)
+            }
         })
 
         return () => {
