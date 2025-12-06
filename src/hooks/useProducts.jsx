@@ -12,7 +12,7 @@ const useProducts = () => {
             return res.data
         }
     })
-    // console.log(products);
+   
     return [products, refetch]
 };
 

@@ -63,7 +63,7 @@ const Navbar = () => {
             })
     }
 
-    // console.log(search);
+   
     return (
         <div>
             <div className="navbar max-w-screen-2xl mx-auto justify-between py-5 lg:px-20 bg-base-100  shadow-sm">
