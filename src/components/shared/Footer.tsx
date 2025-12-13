@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
         <aside>
-          <h1 className='text-lg font-semibold'>Twine</h1>
+          <h1 className='text-xl font-semibold'>Twine</h1>
           <p>
             Twine Industries Ltd.
             <br />

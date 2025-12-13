@@ -8,7 +8,6 @@ const ProductCard = ({ product }) => {
     AOS.init({
         duration:800,
         delay: 50,
-        
     })
    },[])
     return (
@@ -24,12 +23,12 @@ const ProductCard = ({ product }) => {
                     </figure>
                 </Link>
                 <div className="card-body">
-                    <h2 className="card-title text-teal-600 ">
+                    <h2 className="card-title">
                         {product?.name}
 
                     </h2>
                     {/* <p className=" text-sm">Price: <span className='text-md font-semibold'>{product?.price} {product?.currency}</span></p> */}
-                    <p className='text-sm'>Brand: <span className='text-md font-semibold text-red-600'>{product?.brand}</span></p>
+                    <p className='text-sm'>Brand: <span className='text-md font-semibold text-teal-600'>{product?.brand}</span></p>
                     <p className=' opacity-60'>{product?.description?.slice(0, 70)}...more</p>
                     <div className="card-actions  justify-end">
 

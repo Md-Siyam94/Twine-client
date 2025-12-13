@@ -86,7 +86,8 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className='navbar-center hidden lg:flex'>
-                    <label className="flex flex-row-reverse py-2 border rounded-full items-center px-5 border-green-500">
+                    {/* ToDo: make search bar searchable */}
+                    {/* <label className="flex flex-row-reverse py-2 border rounded-full items-center px-5 border-green-500">
                         <svg className="h-[1em] opacity-50 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 strokeLinejoin="round"
@@ -135,7 +136,7 @@ const Navbar = () => {
                             />
                         </ReactTyped>
 
-                    </label>
+                    </label> */}
                 </div>
 
                 <div className="flex gap-24">
