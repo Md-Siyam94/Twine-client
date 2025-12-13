@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import useProducts from '../hooks/useProducts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-
+import AOS from 'aos'
+import "aos/dist/aos.css";
 
 import "swiper/css";
 import { data, Link } from 'react-router-dom';
@@ -13,6 +14,13 @@ import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 
 const CategoryProducts = ({ category }) => {
     const products = useCategoryWiseProducts(category)
+
+    useEffect(()=>{
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in'
+        })
+    },[])
 
 
 
@@ -38,7 +46,7 @@ const CategoryProducts = ({ category }) => {
                 >
                     {
                         products?.slice(0, 15).map((product) => {
-                            return <SwiperSlide key={product?._id} className=''>
+                            return <SwiperSlide data-aos="zoom-in" key={product?._id} className=''>
                                 <div className="card bg-base-100 h-full shadow-sm   ">
                                     <Link to={`/product-details/${product?._id}`}>
                                         <figure>
