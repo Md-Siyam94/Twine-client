@@ -9,19 +9,23 @@ import { GoHeart, GoHome } from 'react-icons/go';
 import { FiLogOut } from 'react-icons/fi';
 import useUser from '../hooks/useUser';
 import { MdOutlineAddBusiness } from 'react-icons/md';
+import useIsAdmin from '../hooks/useIsAdmin';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
     const userInformation = useUser()
+    const [isAdmin] = useIsAdmin()
+    const {logOutUser} = useContext(AuthContext)
 
     const handleLogOut = () => {
-        console.log("log out");
+        logOutUser()
+        .then()
+        .catch(err=>{
+            console.log(err);
+        })
     }
-
-    const isAdmin = true
-
-    const links = <>
-    </>
+    console.log(isAdmin);
+    
     return (
         <div className="max-w-screen-2xl mx-auto">
             <div>
@@ -58,9 +62,9 @@ const Dashboard = () => {
                                 <li><button onClick={handleLogOut}><FiLogOut className='text-xl' /> Log out</button></li></div> :
 
                                 <div>
-                                    <li><Link to={"/dashboard/profile"}>
-                                        <img className='h-12 w-12 rounded-full object-cover' src={user?.photoURL} alt="user photo" />
-                                        {user?.displayName}</Link></li>
+                                   <li><NavLink to={"/"} className={({ isActive }) =>
+                                    isActive ? "text-green-500 " : " hover:text-green-500 "
+                                }><GoHome className='text-xl' /> Home</NavLink></li>
                                     <li>  <NavLink className={({ isActive }) =>
                                         isActive ? "text-green-500 " : " hover:text-green-500 "
                                     } to={"/dashboard/profile"} ><FaRegUser className='text-lg' /> My Account</NavLink></li>
