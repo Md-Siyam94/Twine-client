@@ -6,7 +6,7 @@ import * as motion from "motion/react-client"
 
 const Hero = () => {
     return (
-        <div className='max-h-[calc(100vh-20vh)] lg:px-30 px-6 grid lg:grid-cols-5 grid-cols-1   items-center'>
+        <div className='max-h-[calc(100vh-20vh)] lg:px-30 px-6 grid lg:grid-cols-5 grid-cols-1 py-10 lg:py-0  items-center'>
             <div className='col-span-3 '>
                 <h1 className='lg:text-7xl md:text-5xl text-3xl font-semibold '>Twine Were House</h1>
                 <p className='my-4 '>Your trusted destination for quality products. We bring you carefully selected items, secure payments, and reliable delivery—so you can shop with confidence every time.</p>

@@ -9,13 +9,7 @@ const Products = () => {
 
 
     return (
-        <div className='px-20 pt-5 '>
-            
-            {/* <div className=' grid grid-cols-5 gap-4 items-center '>
-                    {
-                        products.map((product, index)=> <ProductCard key={index} product={product}></ProductCard>)
-                    }
-            </div> */}
+        <div className='lg:px-20 px-4 pt-5 '>
             <section>
                 <CategoryProducts category={"T-shirt"}></CategoryProducts>
             </section>

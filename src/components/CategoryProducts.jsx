@@ -28,7 +28,7 @@ const CategoryProducts = ({ category }) => {
 
 
     return (
-        <div className=' py-12 lg:px-20 mx-auto '>
+        <div className=' py-12 lg:px-20 mx-auto px-4 '>
             <h1 className='text-2xl font-semibold mb-4'>{category}</h1>
             <div className='shadow-lg p-5 rounded-2xl '>
                 <Swiper
