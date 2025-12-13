@@ -66,7 +66,7 @@ const Navbar = () => {
    
     return (
         <div>
-            <div className="navbar max-w-screen-2xl mx-auto justify-between py-5 lg:px-20 bg-base-100  shadow-sm">
+            <div className="navbar max-w-screen-2xl mx-auto fixed top-0 z-50 justify-between py-4 lg:px-20 bg-white/60 shadow-sm">
                 <div className=" ">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

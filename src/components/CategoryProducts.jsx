@@ -18,7 +18,8 @@ const CategoryProducts = ({ category }) => {
     useEffect(()=>{
         AOS.init({
             duration: 800,
-            easing: 'ease-in'
+           delay:20,
+
         })
     },[])
 
@@ -46,7 +47,7 @@ const CategoryProducts = ({ category }) => {
                 >
                     {
                         products?.slice(0, 15).map((product) => {
-                            return <SwiperSlide data-aos="zoom-in" key={product?._id} className=''>
+                            return <SwiperSlide data-aos="fade-up" key={product?._id} className=''>
                                 <div className="card bg-base-100 h-full shadow-sm   ">
                                     <Link to={`/product-details/${product?._id}`}>
                                         <figure>

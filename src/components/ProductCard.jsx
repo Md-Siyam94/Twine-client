@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SwiperSlide } from 'swiper/react';
-
+import AOS from 'aos'
+import * as motion from "motion/react-client"
 const ProductCard = ({ product }) => {
-    console.log(product);
+   useEffect(()=>{
+    AOS.init({
+        duration:800,
+        delay: 50,
+        
+    })
+   },[])
     return (
-        <SwiperSlide  className=''>
-            <div className="card bg-base-100 h-full shadow-sm   ">
+        <SwiperSlide data-aos="fade-up" className=''>
+            <motion.div   whileHover={{ scale: 1.03 }}
+             className="card bg-base-100 h-full shadow-sm   ">
                 <Link to={`/product-details/${product?._id}`}>
                     <figure>
                         <img
@@ -29,7 +37,7 @@ const ProductCard = ({ product }) => {
 
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </SwiperSlide>
     );
 };
