@@ -7,7 +7,7 @@ const WinterArrivalse = () => {
         
     }
     return (
-        <div className=' relative w-full py-6 lg:h-[600px] overflow-hidden'>
+        <div className=' relative w-full  lg:h-[600px] overflow-hidden'>
             <video className="absolute top-0 left-0 w-full opacity-85 max-h-[calc(100vh-15vh)] my-auto  object-cover -z-10" src={ArrivalVideo} autoPlay loop muted controls={false}></video>
            <div  className="relative z-10 text-white flex flex-col justify-center items-center h-full">
             <h1 className='lg:text-7xl md:text-6xl text-4xl font-semibold '>Winter Arrival</h1>

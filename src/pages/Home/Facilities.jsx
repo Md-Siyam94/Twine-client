@@ -6,7 +6,7 @@ import Icon4 from "../../assets/gift.png"
 import * as motion from "motion/react-client"
 const Facilities = () => {
     return (
-        <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 bg-base-200 py-24 px-4 lg:px-20 mx-auto items-center '>
+        <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 bg-black/80 py-24 px-4 lg:px-20  items-center '>
             <motion.div whileHover={{ scale: 1.03 }} className='py-14 hover:bg-green-200 rounded-2xl bg-base-100 shadow px-5 '>
                 <img className='h-12 w-12 ' src={Icon1} alt="Icon" />
                 <h1 className='text-lg my-5 font-semibold'>Sustainable Materials</h1>

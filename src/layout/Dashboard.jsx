@@ -28,7 +28,7 @@ const Dashboard = () => {
                 <Navbar></Navbar>
             </div>
             <div className='grid grid-cols-12 lg:px-20 px-4 gap-4 min-h-[calc(100vh-100px)] bg-base-200 pt-4 '>
-                <div className='lg:col-span-3  hidden lg:block '>
+                <div className='lg:col-span-3 py-20 hidden lg:block '>
                     <ul className='font-semibold menu bg-base-100 py-6 rounded-xl shadow  z-[1] w-full gap-4 p-2'>
                         {
                             isAdmin ? <div><li><NavLink to={"/"} className={({ isActive }) =>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                         }
                     </ul>
                 </div>
-                <div className='lg:col-span-9 col-span-12 '>
+                <div className='lg:col-span-9 py-20 col-span-12 '>
                     <Outlet></Outlet>
                 </div>
             </div>

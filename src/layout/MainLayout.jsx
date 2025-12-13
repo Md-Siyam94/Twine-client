@@ -12,7 +12,7 @@ function MainLayout() {
       <header>
         <Navbar></Navbar>
       </header>
-      <main className=" min-h-[calc(100vh-100px)]">
+      <main className="py-20 min-h-[calc(100vh-100px)]">
         <Outlet></Outlet>
       </main>
       <footer>
