@@ -1,19 +1,25 @@
-import React from 'react';
-import ArrivalVideo from "../../assets/Untitled video - Made with Clipchamp.mp4"
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AOS from 'aos'
 
-const WinterArrivalse = () => {
-    const style = {
-        
-    }
+const WinterArrivalse = ({title, description,image, reversClass = ''}) => {
+  useEffect(()=>{
+    AOS.init({
+        duration:800,
+        delay: 50,
+    })
+  },[])
     return (
-        <div className=' relative w-full  lg:h-[600px] overflow-hidden'>
-            <video className="absolute top-0 left-0 w-full opacity-85 max-h-[calc(100vh-15vh)] my-auto  object-cover -z-10" src={ArrivalVideo} autoPlay loop muted controls={false}></video>
-           <div  className="relative z-10 text-white flex flex-col justify-center items-center h-full">
-            <h1 className='lg:text-7xl md:text-6xl text-4xl font-semibold '>Winter Arrival</h1>
-            <p className='my-6 lg:w-5/12 w-11/12 text-center'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem blanditiis quibusdam eaque aperiam quis iste atque omnis, neque sapiente ut.</p>
-            <Link to={'/products'} className='py-3 px-6 mt-6 rounded-full bg-teal-400'>Let's Shop</Link>
-           </div>
+        <div  className={` lg:flex items-center  gap-6 lg:px-28  py-20 px-4 ${reversClass}`}>
+            <div  className="flex-1 ">
+              
+                <h1 className='lg:text-6xl md:text-5xl text-3xl font-semibold '>{title}</h1>
+                <p className='my-4 '>{description}</p><br />
+                <Link to={'/products'} className='lg:py-3 py-2 px-6 rounded-full text-white bg-linear-80 from-teal-500 to-gray-500'>Let's Shop</Link>
+            </div>
+            <div className={reversClass ?"flex-1 ": 'flex-1 justify-items-end' }>
+                <img className='lg:h-88 w-full object-cover' src={image} alt="" />
+            </div>
         </div>
     );
 };
