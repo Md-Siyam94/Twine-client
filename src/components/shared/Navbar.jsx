@@ -179,7 +179,7 @@ const Navbar = () => {
                                         </div> : <div>
                                             <li><NavLink to={"/dashboard/profile"} className='hover:text-green-500  '><FaRegUser className='text-lg' /> My Account</NavLink></li>
                                             <li><NavLink to={"/dashboard/my-orders"} className='hover:text-green-500  '><RiShoppingCartLine className='text-xl' /> My Orders</NavLink></li>
-                                            <li><NavLink to={"/dashboard/my-reviews"} className='hover:text-green-500  '><FaRegStar className='text-xl' /> Reviews</NavLink></li>
+                                            {/* <li><NavLink to={"/dashboard/my-reviews"} className='hover:text-green-500  '><FaRegStar className='text-xl' /> Reviews</NavLink></li> */}
                                             <li><NavLink to={"/dashboard/wishlist"} className='hover:text-green-500  '><GoHeart className='text-xl' /> Wish List</NavLink></li>
                                         </div>
                                     }

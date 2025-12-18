@@ -13,7 +13,6 @@ const Men = () => {
                 setProducts(data)
             })
     }, [])
-    console.log(products);
 
     return (
         <div className='lg:px-20 px-4 py-4'>

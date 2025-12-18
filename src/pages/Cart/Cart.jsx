@@ -18,7 +18,7 @@ const Cart = () => {
     const totalPrice = selected.reduce((sum, pro) => sum + pro?.price, 0)
    
     const isDisabled =selected.length === 0
-console.log(isDisabled);
+// console.log(isDisabled);
     // get product form checkbox
     const handleChange = (e) => {
         const product = JSON.parse(e.target.value);
