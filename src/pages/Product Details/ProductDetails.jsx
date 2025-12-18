@@ -1,6 +1,6 @@
 import { FaRegHeart } from "react-icons/fa";
 import { RiShoppingCartLine } from "react-icons/ri";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import CategoryProducts from "../../components/CategoryProducts";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -12,6 +12,7 @@ const ProductDetails = () => {
     const params = useParams()
     const product = useLoaderData({})
     const [products, setProducts] = useState([])
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const { name, description, price, _id, currency, size, color, inStock, material, brand, image, category } = product || {}
@@ -28,6 +29,9 @@ const ProductDetails = () => {
 
     // product add to card
     const handleAddToCart = (id) => {
+        if(!user){
+            navigate('/login')
+        }
         const productInfo = {
             userEmail: user?.email,
             userName: user?.displayName,
@@ -71,6 +75,9 @@ const ProductDetails = () => {
 
     // add product in wishlist
     const handleAddToWishlist = (id) => {
+        if(!user){
+            navigate('/login')
+        }
         const productInfo = {
             userEmail: user?.email,
             userName: user?.displayName,

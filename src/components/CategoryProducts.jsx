@@ -10,15 +10,12 @@ import { data, Link } from 'react-router-dom';
 import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 
 
-
-
 const CategoryProducts = ({ category }) => {
     const products = useCategoryWiseProducts(category)
     useEffect(() => {
         AOS.init({
             duration: 500,
-            delay: 10,
-
+            
         })
     }, [])
 
@@ -42,8 +39,8 @@ const CategoryProducts = ({ category }) => {
                     className="mySwiper"
                 >
                     {
-                        products?.slice(0, 15).map((product) => {
-                            return <SwiperSlide data-aos="zoom-in" key={product?._id} className=''>
+                        products?.slice(0, 10).map((product) => {
+                            return <SwiperSlide data-aos="fade-up" data-aos-delay='20' key={product?._id} className=''>
                                 <motion.div whileHover={{ scale: 1.03 }} className="card bg-base-100 h-full shadow-sm   ">
                                     <Link to={`/product-details/${product?._id}`}>
                                         <figure>

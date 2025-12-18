@@ -82,14 +82,8 @@ const Signup = () => {
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="hero-content w-11/12 flex-col lg:flex-row">
-                <div className="text-center hidden lg:block  lg:text-left">
-
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
-                </div>
+            <div className="hero-content w-11/12 ">
+                
                 <div className="card bg-base-100 w-full lg:max-w-md md:max-w-sm py-10 shrink-0 shadow-2xl">
                     <div className="card-body">
                         <h1 className="text-xl text-center font-bold">Sign up</h1>
@@ -132,7 +126,7 @@ const Signup = () => {
                                 {errors.gender && <span className=' text-red-500'>Select a gender</span>}
                                 <p className='text-red-500 mt-1'>{error}</p>
                                 <button className="btn bg-teal-600 hover:bg-teal-700 text-white rounded-full mt-4"><MdOutlineLogin className='text-xl' />Sign up</button>
-                                <p className='text-center my-2'>Already have an Account ? please <Link to={'/signup'} className='text-blue-600 '>Login</Link></p>
+                                <p className='text-center my-2'>Already have an Account ? please <Link to={'/login'} className='text-blue-600 '>Login</Link></p>
                                 <div><GoogleLogin></GoogleLogin></div>
                             </fieldset>
                         </form>

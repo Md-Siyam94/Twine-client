@@ -4,6 +4,7 @@ import { MdOutlineLogin } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../provider/AuthProvider';
+import AdminLogin from '../../components/shared/AdminLogin';
 
 const Login = () => {
     const {signIn} = useContext(AuthContext)
@@ -28,15 +29,8 @@ const Login = () => {
        }
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="hero-content w-11/12 flex-col lg:flex-row">
-                <div className="text-center hidden lg:block lg:text-left">
-
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
-                </div>
-                <div className="card bg-base-100 md:max-w-sm lg:max-w-md w-full mx-auto py-10 shrink-0 shadow-2xl">
+            <div className=" w-11/12 ">
+                <div className="card bg-base-100 md:max-w-sm lg:max-w-md w-full mx-auto pb-10 shrink-0 shadow-2xl">
                     <div className="card-body">
                         <h1 className="text-xl text-center font-bold">Login now!</h1>
                         <form onSubmit={handleSubmit(onSubmit)} >
@@ -54,6 +48,9 @@ const Login = () => {
                                 <button className="btn bg-teal-600 hover:bg-teal-700 text-white rounded-full mt-4"><MdOutlineLogin className='text-xl' />Login</button>
                                 <p className='text-center my-2'>Have not any Account ? please <Link to={'/signup'} className='text-blue-600 '>Sign Up</Link></p>
                                 <div><GoogleLogin></GoogleLogin></div>
+                                <div>
+                                    <AdminLogin></AdminLogin>
+                                </div>
                             </fieldset>
                         </form>
                     </div>

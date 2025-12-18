@@ -6,12 +6,14 @@ import * as motion from "motion/react-client"
 const ProductCard = ({ product }) => {
    useEffect(()=>{
     AOS.init({
-        duration:800,
-        delay: 50,
+        duration:600,
+        delay: 20,
+        
     })
    },[])
     return (
-        <SwiperSlide data-aos="zoom-in" className=''>
+        <SwiperSlide data-aos="fade-up"   data-aos-easing="ease-in-out"
+        data-aos-mirror="true" className='aos-animate aos-init'>
             <motion.div   whileHover={{ scale: 1.03 }}
              className="card bg-base-100 h-full shadow-sm   ">
                 <Link to={`/product-details/${product?._id}`}>
