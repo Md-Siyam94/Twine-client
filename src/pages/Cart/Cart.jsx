@@ -16,8 +16,9 @@ const Cart = () => {
 
     // total price
     const totalPrice = selected.reduce((sum, pro) => sum + pro?.price, 0)
-    // console.log(totalPrice);
-
+   
+    const isDisabled =selected.length === 0
+console.log(isDisabled);
     // get product form checkbox
     const handleChange = (e) => {
         const product = JSON.parse(e.target.value);
@@ -156,7 +157,10 @@ const Cart = () => {
                         <h2 className='text-lg font-semibold'>Total price</h2>
                         <p className='text-lg font-semibold'>{totalPrice} Tk</p>
                     </div>
-                    <button onClick={() => document.getElementById('my_modal_1').showModal()} className=' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'>Buy Products</button>
+                    {
+                        isDisabled && <p className='font-semibold text-red-500 mb-2'>Selecte atleast 1 product to continue buying</p>
+                    }
+                    <button disabled={isDisabled} type='button' onClick={() => document.getElementById('my_modal_1').showModal()} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-xl font-semibold py-2 w-full rounded-lg": ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
                 </div>
             </div>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
