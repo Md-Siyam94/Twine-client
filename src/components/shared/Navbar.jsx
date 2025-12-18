@@ -13,6 +13,9 @@ import { useEffect, useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ReactTyped } from 'react-typed';
+import useIsAdmin from '../../hooks/useIsAdmin';
+import { div } from 'motion/react-client';
+import { MdOutlineAddBusiness } from 'react-icons/md';
 
 
 
@@ -23,6 +26,7 @@ const Navbar = () => {
     const [search, setSearch] = useState('')
     const location = useLocation()
     const path = location.pathname.slice(0, 10)
+    const [isAdmin] = useIsAdmin()
 
     const links = <>
         <li><NavLink className={({ isActive }) =>
@@ -63,7 +67,7 @@ const Navbar = () => {
             })
     }
 
-   
+
     return (
         <div>
             <div className="navbar max-w-screen-2xl mx-auto fixed top-0 z-50 justify-between py-4 lg:px-20 bg-white/60 shadow-sm">
@@ -160,10 +164,25 @@ const Navbar = () => {
                                     alt="user photo" /></div>
                                 <ul tabIndex={0} className="dropdown-content font-semibold menu bg-base-100  z-[1] w-52 p-2 shadow">
                                     <li><Link>{user?.displayName}</Link></li>
-                                    <li><NavLink to={"/dashboard/profile"} className='hover:text-green-500  '><FaRegUser className='text-lg' /> My Account</NavLink></li>
-                                    <li><NavLink to={"/dashboard/my-orders"} className='hover:text-green-500  '><RiShoppingCartLine className='text-xl' /> My Orders</NavLink></li>
-                                    <li><NavLink to={"/dashboard/my-reviews"} className='hover:text-green-500  '><FaRegStar className='text-xl' /> Reviews</NavLink></li>
-                                    <li><NavLink to={"/dashboard/wishlist"} className='hover:text-green-500  '><GoHeart className='text-xl' /> Wish List</NavLink></li>
+                                    {
+                                        isAdmin ? <div>
+                                            <li>  <NavLink className={" hover:text-green-500 "
+                                            } to={"/dashboard/profile"} ><FaRegUser className='text-lg' /> My Account</NavLink></li>
+
+                                            <li><NavLink to={"/dashboard/my-orders"} className={" hover:text-green-500 "
+                                            }><RiShoppingCartLine className='text-xl' /> My Orders</NavLink></li>
+
+                                            <li><NavLink to={"/dashboard/add-product"} className={" hover:text-green-500 "
+                                            }><MdOutlineAddBusiness className='text-xl' /> Add Product</NavLink></li>
+                                            <li><NavLink to={"/dashboard/wishlist"} className='hover:text-green-500  '><GoHeart className='text-xl' /> Wish List</NavLink></li>
+
+                                        </div> : <div>
+                                            <li><NavLink to={"/dashboard/profile"} className='hover:text-green-500  '><FaRegUser className='text-lg' /> My Account</NavLink></li>
+                                            <li><NavLink to={"/dashboard/my-orders"} className='hover:text-green-500  '><RiShoppingCartLine className='text-xl' /> My Orders</NavLink></li>
+                                            <li><NavLink to={"/dashboard/my-reviews"} className='hover:text-green-500  '><FaRegStar className='text-xl' /> Reviews</NavLink></li>
+                                            <li><NavLink to={"/dashboard/wishlist"} className='hover:text-green-500  '><GoHeart className='text-xl' /> Wish List</NavLink></li>
+                                        </div>
+                                    }
                                     <li><button onClick={handleLogOut}><FiLogOut className='text-xl' /> Log out</button></li>
                                 </ul>
                             </div>
