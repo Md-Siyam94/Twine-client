@@ -14,24 +14,20 @@ import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 
 const CategoryProducts = ({ category }) => {
     const products = useCategoryWiseProducts(category)
-
     useEffect(() => {
         AOS.init({
-            duration: 800,
-            delay: 20,
+            duration: 500,
+            delay: 10,
 
         })
     }, [])
 
-
-
-
-
     return (
-        <div className=' py-12 lg:px-20 mx-auto px-4 '>
+        <div  className=' py-12 lg:px-20 mx-auto px-4 '>
             <h1 className='text-2xl font-semibold mb-4'>{category}</h1>
             <div className='shadow-lg p-5 rounded-2xl '>
                 <Swiper
+                
                     watchSlidesProgress={true}
                     spaceBetween={20}
                     slidesPerView={1}
@@ -39,7 +35,7 @@ const CategoryProducts = ({ category }) => {
                         768: {
                             slidesPerView: 2,
                         },
-                        992: {    // lg screen
+                        992: {   
                             slidesPerView: 5,
                         },
                     }}
@@ -47,7 +43,7 @@ const CategoryProducts = ({ category }) => {
                 >
                     {
                         products?.slice(0, 15).map((product) => {
-                            return <SwiperSlide data-aos="fade-up" key={product?._id} className=''>
+                            return <SwiperSlide data-aos="zoom-in" key={product?._id} className=''>
                                 <motion.div whileHover={{ scale: 1.03 }} className="card bg-base-100 h-full shadow-sm   ">
                                     <Link to={`/product-details/${product?._id}`}>
                                         <figure>

@@ -18,7 +18,7 @@ const AddProduct = () => {
 
         setUploading(true)
         const imageFile = { image: data?.image[0] }
-        console.log(imageFile);
+        // console.log(imageFile);
         const res = await axiosSecure.post(img_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -44,7 +44,7 @@ const AddProduct = () => {
             // console.log(productInfo);
             axiosSecure.post('/products', productInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res?.data?.success) {
                         setUploading(false)
                         reset()

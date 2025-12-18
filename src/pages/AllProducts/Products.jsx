@@ -9,7 +9,7 @@ const Products = () => {
 
 
     return (
-        <div className='lg:px-20 px-4 pt-5 '>
+        <div className=' px-4 pt-5 '>
             <section>
                 <CategoryProducts category={"T-shirt"}></CategoryProducts>
             </section>

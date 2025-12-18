@@ -56,8 +56,6 @@ const Wishlist = () => {
 
     // post product to cart
     const handleAddToCart = async (id, wishlistId) => {
-        //  console.log(id, wishlistId);
-        //  setProductId(id)
         const res = await axiosPublic.get(`/products/${id}`)
             .then(res => {
 
@@ -66,9 +64,7 @@ const Wishlist = () => {
             .catch(err => {
                 console.log(err);
             })
-
         setSingleProduct(res)
-
         const productInfo = {
             userEmail: user?.email,
             userName: user?.displayName,
@@ -83,7 +79,7 @@ const Wishlist = () => {
             color: singleProduct?.color,
 
         }
-        console.log(productInfo);
+        // console.log(productInfo);
 
         await axiosPublic.post("/cart_products", productInfo)
             .then(res => {

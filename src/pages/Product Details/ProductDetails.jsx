@@ -90,7 +90,7 @@ const ProductDetails = () => {
         console.log(productInfo);
         axiosPublic.post("/wishlist", productInfo)
             .then(res => {
-                console.log(res?.data);
+                // console.log(res?.data);
                 if (res?.data?.success) {
                     Swal.fire({
                         position: "top-end",

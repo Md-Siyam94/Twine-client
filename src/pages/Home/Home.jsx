@@ -14,7 +14,6 @@ const Home = () => {
 
         return (
         <div>
-          
             <section>
                 <Hero></Hero>
             </section>
@@ -25,7 +24,7 @@ const Home = () => {
             <CategoryProducts category={"T-shirt"}></CategoryProducts>
             </section>
             <section className=' '>
-                <WinterArrivalse title={'Winter Arrival'}  description={'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem blanditiis quibusdam eaque aperiam quis iste atque omnis, neque sapiente ut.'} image={WomanShoping} ></WinterArrivalse>
+                <WinterArrivalse title={'Winter Arrival'}  description={'From soft fabrics to timeless designs, winter fashion meets everyday elegance.Stay warm, stay stylish, and make every winter moment feel special. This season is all about comfort, confidence, and effortless charm.'} image={WomanShoping} ></WinterArrivalse>
             </section>
             <section>
             <CategoryProducts category={"Saree"}></CategoryProducts>
@@ -37,7 +36,7 @@ const Home = () => {
             <CategoryProducts category={"Panjabi"}></CategoryProducts>
             </section>
             <section>
-                <WinterArrivalse title={"Get What You Want"} description={'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem blanditiis quibusdam eaque aperiam quis iste atque omnis, neque sapiente ut.'} image={ManShoping} reversClass='flex-row-reverse'></WinterArrivalse>
+                <WinterArrivalse title={"Get What You Want"} description={'Discover pieces designed for comfort, warmth, and everyday elegance.From casual wear to standout looks, find styles that match your mood and moments.Crafted with quality fabrics to keep you comfortable all season long.'} image={ManShoping} reversClass='flex-row-reverse'></WinterArrivalse>
             </section>
             <section>
             <CategoryProducts category={"Pant"}></CategoryProducts>

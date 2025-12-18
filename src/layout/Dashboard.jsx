@@ -24,7 +24,7 @@ const Dashboard = () => {
             console.log(err);
         })
     }
-    console.log(isAdmin);
+    // console.log(isAdmin);
     
     return (
         <div className="max-w-screen-2xl mx-auto">

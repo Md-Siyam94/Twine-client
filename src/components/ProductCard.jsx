@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
     })
    },[])
     return (
-        <SwiperSlide data-aos="fade-up" className=''>
+        <SwiperSlide data-aos="zoom-in" className=''>
             <motion.div   whileHover={{ scale: 1.03 }}
              className="card bg-base-100 h-full shadow-sm   ">
                 <Link to={`/product-details/${product?._id}`}>
