@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useCartProducts from '../../hooks/useCartProducts';
 import { motion } from "motion/react"
 import Feature from '../../components/Feature';
@@ -8,17 +8,19 @@ import { Link } from 'react-router-dom';
 import { div } from 'motion/react-client';
 import Lottie from 'lottie-react';
 import noData from '../../../public/noData.json'
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Cart = () => {
     const [cartProdcuts, refetch] = useCartProducts()
     const axiosPublic = useAxiosPublic()
     const [selected, setSelected] = useState([]);
+    const {user}= useContext(AuthContext)
 
     // total price
-    const totalPrice = selected.reduce((sum, pro) => sum + pro?.price, 0)
-   
+    const totalPrice = selected?.reduce((sum, pro) => sum + pro?.price, 0)
     const isDisabled =selected.length === 0
-// console.log(isDisabled);
+
+
     // get product form checkbox
     const handleChange = (e) => {
         const product = JSON.parse(e.target.value);
@@ -28,7 +30,20 @@ const Cart = () => {
             setSelected(selected.filter(item => item?._id !== product?._id));
         }
     };
-    // console.log(selected);
+// console.log(selected.map((item)=> item?._id));
+    // order products
+    const hanldeOrder =()=>{
+        const orderInfo = {
+            email: user?.email,
+            userName: user?.displayName,
+            transactionId: "",
+           itemsId: selected?.map((item)=> item?._id),
+            totalPrice: totalPrice,
+            status: "pending"
+        }
+        console.log(orderInfo);
+        
+    }
 
     // delete product from cart
     const handleCancel = (id) => {
@@ -160,23 +175,24 @@ const Cart = () => {
                     {
                         isDisabled && <p className='font-semibold text-red-500 mb-2'>Selecte atleast 1 product to continue buying</p>
                     }
-                    <button disabled={isDisabled} type='button' onClick={() => document.getElementById('my_modal_1').showModal()} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-xl font-semibold py-2 w-full rounded-lg": ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
+                    <button disabled={isDisabled} type='button' onClick={hanldeOrder} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-xl font-semibold py-2 w-full rounded-lg": ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
                 </div>
             </div>
+            {/* onClick={() => document.getElementById('my_modal_1').showModal()}  */}
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-
+{/* 
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Hello!</h3>
                     <p className="py-4">Press ESC key or click the button below to close</p>
                     <div className="modal-action">
-                        <form method="dialog">
+                        <form method="dialog"> */}
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="py-2 px-5 border rounded-full">Close</button>
+                            {/* <button className="py-2 px-5 border rounded-full">Close</button>
                         </form>
                     </div>
                 </div>
-            </dialog>
+            </dialog> */}
 
         </div>
     );
