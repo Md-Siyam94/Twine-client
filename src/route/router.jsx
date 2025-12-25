@@ -18,6 +18,7 @@ import AddProduct from "../pages/Dashboard pages/Admin pages/AddProduct";
 import Men from "../pages/Mens/Men";
 import Women from "../pages/Women/Women";
 import AdminDashboard from "../pages/Dashboard pages/Admin pages/AdminDashboard";
+import Error from "../pages/Error/Error";
 
 
 
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -71,6 +73,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/dashboard/profile",

@@ -11,7 +11,7 @@ import Lottie from 'lottie-react';
 import noData from '../../../public/noData.json'
 import { AuthContext } from '../../provider/AuthProvider';
 import { useForm } from 'react-hook-form';
-import { FaCheckCircle, FaOpencart } from 'react-icons/fa';
+import { FaArrowLeft, FaCheckCircle, FaOpencart } from 'react-icons/fa';
 
 const Cart = () => {
     const [cartProdcuts, refetch] = useCartProducts()
@@ -42,11 +42,21 @@ const Cart = () => {
     // order products
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(selected.length === 0){
+            return Swal.fire({
+                position: "top-center",
+                icon: "error",
+                title: "select products to buy!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
         const form = e.target;
 
         const phone = form.phone.value;
         const address = form.address.value;
         const special_instructions = form.special_instructions.value;
+        console.log(phone, address, special_instructions);
 
         const orderInfo = {
             email: user?.email,
@@ -104,10 +114,13 @@ const Cart = () => {
         });
 
     }
-
-
+    // close modal
+    const hanldeModalclose = () => {
+        document.getElementById("my_modal_1").close();
+    }
     return (
         <div className='grid grid-cols-12 gap-5 max-h-screen[calc(100vh-100px)] overflow-y-scroll pb-16 px-20 pt-5'>
+            {/* cart product section */}
             <div className="overflow-x-auto lg:col-span-8 col-span-12">
                 {
                     cartProdcuts.length > 0 ?
@@ -190,7 +203,6 @@ const Cart = () => {
             <div className='lg:col-span-4 col-span-12 w-full grid shadow max-h-[calc(100vh-150px)] p-5 rounded-xl'>
                 <h1 className='text-2xl font-semibold'>Payment Info</h1>
                 {/* todo: use strip for payment */}
-
                 <div className='mt-4'>
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">Payment with</legend>
@@ -200,33 +212,32 @@ const Cart = () => {
                     </fieldset>
                 </div>
                 <div className='flex w-full justify-between mt-8'>
-                    <h2 className='text-lg font-semibold'>Total products</h2>
-                    <p className='text-lg font-semibold'>{selected?.length}</p>
+                    <h2 className='font-semibold opacity-80'>Total products</h2>
+                    <p className=' font-semibold'>{selected?.length}</p>
                 </div>
                 <div className='flex w-full justify-between mb-8 mt-2'>
-                    <h2 className='text-lg font-semibold'>Total price</h2>
-                    <p className='text-lg font-semibold'>{totalPrice} Tk</p>
+                    <h2 className=' font-semibold opacity-80'>Total price</h2>
+                    <p className=' font-semibold'>{totalPrice} Tk</p>
                 </div>
                 {
-                    isDisabled && <p className='font-semibold text-red-500 mb-2'>Selecte atleast 1 product to continue buying</p>
+                    isDisabled && <p className='font-semibold text-red-500 text-sm mb-2'>Selecte atleast 1 product to continue buying</p>
                 }
-                <button disabled={isDisabled} type='button' onClick={() => document.getElementById('my_modal_1').showModal()} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-xl font-semibold py-2 w-full rounded-lg" : ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
-
+                <button disabled={isDisabled} type='button' onClick={() => document.getElementById('my_modal_1').showModal()} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-lg font-semibold py-2 w-full rounded-lg" : ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
             </div>
-            {/* Open the modal */}
 
+            {/* Open the modal */}
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box lg:w-6/12 lg:max-w-4xl ">
                     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-4 px-4 sm:px-6 lg:px-4">
                         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                            <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-10">
+                            <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-8 py-10">
                                 <div className="flex items-center justify-center mb-4">
                                     <FaOpencart className="h-12 w-12 text-white" />
                                 </div>
                                 <h1 className="text-3xl font-bold text-center text-white mb-2">
                                     Place Your Order
                                 </h1>
-                                <p className="text-center text-blue-100">
+                                <p className="text-center text-teal-100">
                                     Fill out the form below and we'll process your order right away
                                 </p>
                             </div>
@@ -239,8 +250,12 @@ const Cart = () => {
                                         <p className="text-green-700 text-sm mt-1">
                                             We've received your order and will contact you shortly.
                                         </p>
+                                        <button onClick={hanldeModalclose} type='button' className=" flex  gap-2  items-center py-3  font-semibold rounded-full" ><FaArrowLeft />
+                                            Go Back</button>
                                     </div>
+
                                 </div>
+
                             )}
 
                             {/* form */}
@@ -251,7 +266,7 @@ const Cart = () => {
                                         Full Name <span className='text-red-500'>*</span>
                                     </label>
                                     <input
-                                        disabled
+                                        readOnly
                                         type="text"
                                         id="customer_name"
                                         name='name'
@@ -267,7 +282,7 @@ const Cart = () => {
                                             Email <span className='text-red-500'>*</span>
                                         </label>
                                         <input
-                                            disabled
+                                            readOnly
                                             type="email"
                                             id="email"
                                             name='email'
@@ -286,9 +301,13 @@ const Cart = () => {
                                             type="tel"
                                             id="phone"
                                             name='phone'
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                                            placeholder="+88 017********"
+                                            pattern="[0-9]*"
+                                            minLength="11"
+                                            maxLength="11"
+                                            className="input validator w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                                            placeholder=" 017********"
                                         />
+                                        <p className="validator-hint">Must be 11 digits</p>
 
                                     </div>
                                 </div>
