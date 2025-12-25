@@ -3,22 +3,30 @@ import useCartProducts from '../../hooks/useCartProducts';
 import { motion } from "motion/react"
 import Feature from '../../components/Feature';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { div } from 'motion/react-client';
 import Lottie from 'lottie-react';
 import noData from '../../../public/noData.json'
 import { AuthContext } from '../../provider/AuthProvider';
+import { useForm } from 'react-hook-form';
+import { FaCheckCircle, FaOpencart } from 'react-icons/fa';
 
 const Cart = () => {
     const [cartProdcuts, refetch] = useCartProducts()
     const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const [selected, setSelected] = useState([]);
-    const {user}= useContext(AuthContext)
+    const { user } = useContext(AuthContext)
+    const [isSubmitting, setSubmitting] = useState(false)
+    const [error, setError] = useState("")
+    const [submitSuccess, setSubmitSuccess] = useState(true)
+   
 
     // total price
     const totalPrice = selected?.reduce((sum, pro) => sum + pro?.price, 0)
-    const isDisabled =selected.length === 0
+    const isDisabled = selected.length === 0
 
 
     // get product form checkbox
@@ -30,19 +38,27 @@ const Cart = () => {
             setSelected(selected.filter(item => item?._id !== product?._id));
         }
     };
-// console.log(selected.map((item)=> item?._id));
+
     // order products
-    const hanldeOrder =()=>{
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         const orderInfo = {
             email: user?.email,
             userName: user?.displayName,
             transactionId: "",
-           itemsId: selected?.map((item)=> item?._id),
+            itemsId: selected?.map((item) => item?._id),
             totalPrice: totalPrice,
             status: "pending"
         }
         console.log(orderInfo);
-        
+        axiosSecure.post("/payments/create-ssl-payment", orderInfo)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }
 
     // delete product from cart
@@ -79,6 +95,8 @@ const Cart = () => {
         });
 
     }
+
+   
     return (
         <div className='grid grid-cols-12 gap-5 max-h-screen[calc(100vh-100px)] overflow-y-scroll pb-16 px-20 pt-5'>
             <div className="overflow-x-auto lg:col-span-8 col-span-12">
@@ -163,36 +181,161 @@ const Cart = () => {
             <div className='lg:col-span-4 col-span-12 w-full grid shadow max-h-[calc(100vh-150px)] p-5 rounded-xl'>
                 <h1 className='text-2xl font-semibold'>Payment Info</h1>
                 {/* todo: use strip for payment */}
-                <div className=' '>
-                    <div className='flex w-full justify-between my-8'>
-                        <h2 className='text-lg font-semibold'>Total products</h2>
-                        <p className='text-lg font-semibold'>{selected?.length}</p>
-                    </div>
-                    <div className='flex w-full justify-between my-8'>
-                        <h2 className='text-lg font-semibold'>Total price</h2>
-                        <p className='text-lg font-semibold'>{totalPrice} Tk</p>
-                    </div>
-                    {
-                        isDisabled && <p className='font-semibold text-red-500 mb-2'>Selecte atleast 1 product to continue buying</p>
-                    }
-                    <button disabled={isDisabled} type='button' onClick={hanldeOrder} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-xl font-semibold py-2 w-full rounded-lg": ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
+
+                <div className='mt-4'>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">Payment with</legend>
+                        <select defaultValue="SSL Commerze" className="select">
+                            <option disabled={true}>SSL Commerze</option>
+                        </select>
+                    </fieldset>
                 </div>
+                <div className='flex w-full justify-between mt-8'>
+                    <h2 className='text-lg font-semibold'>Total products</h2>
+                    <p className='text-lg font-semibold'>{selected?.length}</p>
+                </div>
+                <div className='flex w-full justify-between mb-8 mt-2'>
+                    <h2 className='text-lg font-semibold'>Total price</h2>
+                    <p className='text-lg font-semibold'>{totalPrice} Tk</p>
+                </div>
+                {
+                    isDisabled && <p className='font-semibold text-red-500 mb-2'>Selecte atleast 1 product to continue buying</p>
+                }
+                <button disabled={isDisabled} type='button' onClick={() => document.getElementById('my_modal_1').showModal()} className={isDisabled ? "bg-gray-300 cursor-not-allowed text-xl font-semibold py-2 w-full rounded-lg" : ' text-xl font-semibold py-2 w-full rounded-lg hover:cursor-pointer bg-teal-700 text-white hover:bg-teal-800'}>Buy Products</button>
+
             </div>
-            {/* onClick={() => document.getElementById('my_modal_1').showModal()}  */}
-            {/* Open the modal using document.getElementById('ID').showModal() method */}
-{/* 
+            {/* Open the modal */}
+
             <dialog id="my_modal_1" className="modal">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">Press ESC key or click the button below to close</p>
-                    <div className="modal-action">
-                        <form method="dialog"> */}
-                            {/* if there is a button in form, it will close the modal */}
-                            {/* <button className="py-2 px-5 border rounded-full">Close</button>
-                        </form>
+                <div className="modal-box lg:w-6/12 lg:max-w-4xl ">
+                    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-4 px-4 sm:px-6 lg:px-4">
+                            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                                <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-10">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <FaOpencart className="h-12 w-12 text-white" />
+                                    </div>
+                                    <h1 className="text-3xl font-bold text-center text-white mb-2">
+                                        Place Your Order
+                                    </h1>
+                                    <p className="text-center text-blue-100">
+                                        Fill out the form below and we'll process your order right away
+                                    </p>
+                                </div>
+
+                                {submitSuccess && (
+                                    <div className="mx-8 mt-8 bg-green-50 border border-green-200 rounded-lg p-4 flex items-start">
+                                        <FaCheckCircle  className="h-5 w-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
+                                        <div>
+                                            <h3 className="text-green-900 font-semibold">Order submitted successfully!</h3>
+                                            <p className="text-green-700 text-sm mt-1">
+                                                We've received your order and will contact you shortly.
+                                            </p>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* form */}
+                                <form onSubmit={()=>handleSubmit(e)} className="px-8 py-10 space-y-6">
+                                    <div>
+                                        <label htmlFor="customer_name" className="block text-sm font-semibold text-gray-700 mb-2">
+                                            Full Name *
+                                        </label>
+                                        <input
+                                        disabled
+                                            type="text"
+                                            id="customer_name"
+                                            name='name'
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                                           defaultValue={user?.displayName}
+                                        />
+                                     
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                                                Email Address *
+                                            </label>
+                                            <input
+                                            disabled
+                                                type="email"
+                                                id="email"
+                                                name='email'
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                                               defaultValue={user?.email}
+                                            />
+                                           
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                                                Phone Number *
+                                            </label>
+                                            <input
+                                            required
+                                                type="tel"
+                                                id="phone"
+                                                name='number'
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                                                placeholder="+88 017********"
+                                            />
+                                          
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">
+                                            Delivery Address *
+                                        </label>
+                                        <textarea
+                                        required
+                                            id="address"
+                                            name='address'
+                                            rows={3}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
+                                            placeholder="Mirpur-10, Dhaka..."
+                                        />
+                                      
+                                    </div>
+
+                                   
+
+                                    <div>
+                                        <label htmlFor="special_instructions" className="block text-sm font-semibold text-gray-700 mb-2">
+                                            Special Instructions
+                                        </label>
+                                        <textarea
+                                            id="special_instructions"
+                                            name=''
+                                            rows={4}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
+                                            placeholder="Any special requests or delivery instructions..."
+                                        />
+                                    </div>
+                                    <button  className=" w-full  bg-black/80 text-white font-semibold py-3 px-6 rounded-lg  hover:bg-black/90  transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl">Cancel</button>
+                                    <button 
+                                 
+                                       type='button'
+                                        disabled={isSubmitting}
+                                        className="w-full bg-gradient-to-r from-teal-600 to-teal-700 text-white font-semibold py-3 px-6 rounded-lg hover:from-teal-700 hover:to-teal-800   transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                                    >
+                                        {isSubmitting ? (
+                                            <span className="flex items-center justify-center">
+                                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                Processing...
+                                            </span>
+                                        ) : (
+                                            'Confirm Order'
+                                        )}
+                                    </button>
+                                </form>
+                            </div>
                     </div>
                 </div>
-            </dialog> */}
+            </dialog>
 
         </div>
     );
