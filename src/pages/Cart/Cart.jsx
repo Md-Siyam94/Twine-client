@@ -42,15 +42,6 @@ const Cart = () => {
     // order products
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(selected.length === 0){
-            return Swal.fire({
-                position: "top-center",
-                icon: "error",
-                title: "select products to buy!",
-                showConfirmButton: false,
-                timer: 1500
-              });
-        }
         const form = e.target;
 
         const phone = form.phone.value;
@@ -69,7 +60,16 @@ const Cart = () => {
             totalPrice: totalPrice,
             status: "pending"
         }
-        console.log(orderInfo);
+        if(selected.length === 0){
+            return document.getElementById("my_modal_1").close()  &&  Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "select products to buy!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+           
+        }
         axiosSecure.post("/payments/create-ssl-payment", orderInfo)
             .then(res => {
                 console.log(res.data);
@@ -250,7 +250,7 @@ const Cart = () => {
                                         <p className="text-green-700 text-sm mt-1">
                                             We've received your order and will contact you shortly.
                                         </p>
-                                        <button onClick={hanldeModalclose} type='button' className=" flex  gap-2  items-center py-3  font-semibold rounded-full" ><FaArrowLeft />
+                                        <button onClick={hanldeModalclose} type='button' className=" flex cursor-pointer gap-2  items-center py-3  font-semibold rounded-full" ><FaArrowLeft />
                                             Go Back</button>
                                     </div>
 
@@ -339,10 +339,10 @@ const Cart = () => {
                                         placeholder="Any special requests or delivery instructions..."
                                     />
                                 </div>
-                                <button className=" w-full  bg-black/80 text-white font-semibold py-3 px-6 rounded-lg  hover:bg-black/90  transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl">Cancel</button>
+                                <button onClick={hanldeModalclose} className=" w-full cursor-pointer bg-black/80 text-white font-semibold py-3 px-6 rounded-lg  hover:bg-black/90  transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl">Cancel</button>
                                 <button
                                     disabled={isSubmitting}
-                                    className="w-full bg-gradient-to-r from-teal-600 to-teal-700 text-white font-semibold py-3 px-6 rounded-lg hover:from-teal-700 hover:to-teal-800   transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                                    className="w-full cursor-pointer bg-gradient-to-r from-teal-600 to-teal-700 text-white font-semibold py-3 px-6 rounded-lg hover:from-teal-700 hover:to-teal-800   transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                                 >
                                     {isSubmitting ? (
                                         <span className="flex items-center justify-center">
