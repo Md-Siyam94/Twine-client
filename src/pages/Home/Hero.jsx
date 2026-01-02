@@ -13,12 +13,12 @@ const Hero = () => {
                     transition={{ duration: 0.6, ease: "easeOut" }} className='lg:text-7xl md:text-5xl text-3xl font-semibold '>Twine Were House</motion.h1>
                 <motion.p initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }} className='my-4 '>Your trusted destination for quality products. We bring you carefully selected items, secure payments, and reliable delivery—so you can shop with confidence every time.</motion.p>
+                    transition={{ duration: 0.8, ease: "easeOut" }} className='my-5 '>Your trusted destination for quality products. We bring you carefully selected items, secure payments, and reliable delivery—so you can shop with confidence every time.</motion.p>
 
                 <motion.div whileHover={{ scale: 1.03 }} initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.0, ease: "easeOut" }} className='lg:w-48 w-40'>
-                    <Link to={"/products"} className='bg-teal-600 flex  justify-center gap-2 items-center py-4 rounded-full text-white bg-linear-80 from-teal-500 to-gray-500'>Let's Shop <FaShopify className='text-xl' /></Link>
+                    <Link to={"/products"} className="flex justify-center gap-2 items-center rounded-full bg-linear-80 w-full cursor-pointer bg-black/80 text-white font-semibold lg:py-4 py-3 hover:bg-black/90  transition-all duration-200 disabled:opacity-50 shadow-lg hover:shadow-xl">Let's Shop <FaShopify className='text-xl' /></Link>
                 </motion.div>
 
             </div>

@@ -13,7 +13,7 @@ const WinterArrivalse = ({title, description,image, reversClass = ''}) => {
                 <h1 data-aos="fade-up" data-aos-duration="900" className='lg:text-6xl md:text-5xl text-3xl font-semibold '>{title}</h1>
                 <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="40" className='my-4 '>{description}</p><br />
                 <div data-aos="fade-up" data-aos-duration="700" >
-                <Link  to={'/products'} className='lg:py-3 py-2 px-6 rounded-full text-white bg-linear-80 from-teal-500 to-gray-500'>Let's Shop</Link>
+                <Link  to={'/products'} className='rounded-full bg-linear-80 w-full px-6 cursor-pointer bg-black/80 text-white font-semibold lg:py-4 py-3 hover:bg-black/90  transition-all duration-200 disabled:opacity-50 shadow-lg hover:shadow-xl'>Let's Shop</Link>
                 </div>
             </div>
             <div className={reversClass ?"flex-1 mt-6": 'flex-1 justify-items-end mt-6' }>

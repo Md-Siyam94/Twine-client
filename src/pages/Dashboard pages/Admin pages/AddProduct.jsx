@@ -190,7 +190,8 @@ const AddProduct = () => {
                 </label> */}
 
                     <div>
-                        <button className="btn btn-info text-white mt-8">
+                        <button className="bg-teal-600 w-48 text-md py-3 rounded-full text-white bg-linear-80 from-teal-500 to-gray-500
+                         mt-8">
                             {
                                 uploading ? "Uploading..." : "Uploade product"
                             }
