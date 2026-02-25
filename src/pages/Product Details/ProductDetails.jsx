@@ -121,15 +121,15 @@ const ProductDetails = () => {
             })
     }
     return (
-        <div className="w-10/12 py-14  mx-auto mt-5 rounded-2xl grid grid-cols-12 ">
-            <div className="flex  bg-base-100 col-span-9 py-4 shadow-sm">
-                <figure className="px-10 ">
+        <div className="lg:w-10/12 py-14  mx-auto lg:mt-5 rounded-2xl grid lg:grid-cols-12 ">
+            <div className="lg:flex w-full mx-auto  bg-base-100 lg:col-span-9 px-4 shadow-sm">
+                <figure className="px-10">
                     <img
-                        className="h-96 w-96 p-7 "
+                        className="h-96 w-96 mx-auto p-7 "
                         src={image}
                         alt={category} />
                 </figure>
-                <div className="">
+                <div className=" pl-12 lg:pl-0">
                     <h2 className="card-title">
                         {name}
                         <div className="badge">({material})</div>
@@ -143,13 +143,13 @@ const ProductDetails = () => {
                     <p className="flex gap-2 my-4">color: {color?.join(", ")}
                     </p>
                     <p>TK. <span className="text-lg font-semibold">{price} {currency}</span></p>
-                    <div className="my-6 flex gap-4">
+                    <div className="my-6  md:grid-cols-2  gap-4">
                         <button  onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10  rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
-                        <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
+                        <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 mt-5 lg:mt-0 rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
                     </div>
                 </div>
             </div>
-            <div className="col-span-3 px-4 lg:max-h-[calc(100vh-130px)] overflow-y-scroll">
+            <div className="lg:col-span-3 px-8 mt-5 lg:mt-0 lg:max-h-[calc(100vh-130px)]  overflow-y-scroll">
                 <h1 className="text-xl font-semibold ">More products</h1>
                 <div>
 

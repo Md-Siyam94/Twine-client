@@ -8,6 +8,7 @@ const useCategoryWiseProducts = (category) => {
     // console.log(category);
 
   const data = products.filter(newproducts=> newproducts?.category === category )
+  console.log("from usecategory wise product",data);
          return data
 };
 

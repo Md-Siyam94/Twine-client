@@ -12,9 +12,9 @@ import useCategoryWiseProducts from '../hooks/useCategoryWiseProducts';
 
 const CategoryProducts = ({ category }) => {
     const products = useCategoryWiseProducts(category)
-    useEffect(() => {
-        AOS.init()
-    }, [])
+    // useEffect(() => {
+    //     AOS.init()
+    // }, [])
 
     return (
         <div  className=' py-12 lg:px-20 mx-auto px-4 '>
@@ -36,8 +36,8 @@ const CategoryProducts = ({ category }) => {
                     className="mySwiper"
                 >
                     {
-                        products?.slice(0, 10).map((product) => {
-                            return <SwiperSlide data-aos="fade-up" data-aos-duration="600" data-aos-delay='20' key={product?._id} className=''>
+                        products?.map((product) => {
+                            return <SwiperSlide  key={product?._id} className=''>
                                 <motion.div whileHover={{ scale: 1.03 }} className="card bg-base-100 h-full shadow-sm   ">
                                     <Link to={`/product-details/${product?._id}`}>
                                         <figure>
