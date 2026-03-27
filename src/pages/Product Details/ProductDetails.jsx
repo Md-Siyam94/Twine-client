@@ -143,7 +143,7 @@ const ProductDetails = () => {
                     <p className="flex gap-2 my-4">color: {color?.join(", ")}
                     </p>
                     <p>TK. <span className="text-lg font-semibold">{price} {currency}</span></p>
-                    <div className="my-6  md:grid-cols-2  gap-4">
+                    <div className="my-6 grid md:grid-cols-2  gap-4">
                         <button  onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10  rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
                         <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 mt-5 lg:mt-0 rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
                     </div>
