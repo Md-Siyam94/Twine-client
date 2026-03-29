@@ -6,6 +6,7 @@ import WinterArrivalse from './WinterArrivalse';
 import Facilities from './Facilities';
 import WomanShoping from '../../assets/woman-shopping-street-smiling-winter.jpg'
 import ManShoping from '../../assets/man with cloth.jpg'
+import TagProducts from '../../components/shared/TagProducts';
 
 
 
@@ -27,7 +28,7 @@ const Home = () => {
                 <WinterArrivalse title={'Winter Arrival'}  description={'From soft fabrics to timeless designs, winter fashion meets everyday elegance.Stay warm, stay stylish, and make every winter moment feel special. This season is all about comfort, confidence, and effortless charm.'} image={WomanShoping} ></WinterArrivalse>
             </section>
             <section>
-            <CategoryProducts category={"Saree"}></CategoryProducts>
+            <TagProducts tag={"Featured"}></TagProducts>
             </section>
             <section>
                 <Facilities></Facilities>
