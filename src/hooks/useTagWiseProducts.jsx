@@ -1,13 +1,17 @@
-import React from 'react';
-import useProducts from './useProducts';
+import useAxiosPublic from './useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const useTagWiseProducts = (tag) => {
-    // console.log(tag);
-   const [products] = useProducts()
+    const axiosPublic = useAxiosPublic()
+    const {data: products= [], refetch}= useQuery({
+        queryKey: ['products'],
+        queryFn: async()=>{
+            const res = await axiosPublic.get(`/products/${tag }`)
+            return res.data
+        }
+    })
 
-   const data = products.filter(newProducts=> newProducts?.tag === tag)
-   console.log(data);
-    return  data
+    return [products, refetch]
     
 };
 
