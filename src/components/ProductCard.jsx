@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
                         <p className=' opacity-60'>{product?.description?.slice(0, 40)}...more</p>
                     </Link>
                     {
-                        product?.descountPrice ? <p className='text-lg text-amber-600 font-semibold'><span className='line-through'>{product?.price}</span> <span>{product?.descountPrice}</span> ৳ <span>{Math.round((product?.price / product?.descountPrice) * 100)} %</span></p> : <p className='text-lg text-amber-600 font-semibold'><span>{product?.price}</span> ৳ </p>
+                        product?.descountPrice ? <p className='text-lg text-amber-600 font-semibold'><span className='line-through'>{product?.price}</span> <span>{product?.descountPrice}</span> ৳ </p> : <p className='text-lg text-amber-600 font-semibold'><span>{product?.price}</span> ৳ </p>
                     }
                     <div className="card-actions  justify-center">
 
