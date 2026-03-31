@@ -1,7 +1,6 @@
 
 import Hero from './Hero';
 import CategoryProducts from '../../components/CategoryProducts';
-import TargetAudiance from './TargetAudiance';
 import WinterArrivalse from './WinterArrivalse';
 import Facilities from './Facilities';
 import WomanShoping from '../../assets/woman-shopping-street-smiling-winter.jpg'
