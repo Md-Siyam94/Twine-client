@@ -83,7 +83,7 @@ const isAdmin = useIsAdmin()
         }
     
     return (
-        <div className=' py-12 max-w-8xl lg:px-20 mx-auto px-5 '>
+        <div className=' py-12 max-w-7xl  mx-auto px-5 '>
             <h1 className='text-3xl font-semibold mb-4'>{tag}</h1>
             <div className='shadow-lg p-5 rounded-2xl '>
                 <Swiper

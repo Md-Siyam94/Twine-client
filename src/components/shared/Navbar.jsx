@@ -16,6 +16,8 @@ import { ReactTyped } from 'react-typed';
 import useIsAdmin from '../../hooks/useIsAdmin';
 import { div } from 'motion/react-client';
 import { MdOutlineAddBusiness } from 'react-icons/md';
+import { ShoppingCart } from 'lucide-react';
+import useCartProducts from '../../hooks/useCartProducts';
 
 
 
@@ -27,7 +29,7 @@ const Navbar = () => {
     const location = useLocation()
     const path = location.pathname.slice(0, 10)
     const [isAdmin] = useIsAdmin()
-
+const [cartProdcuts, refetch] = useCartProducts([])
     const links = <>
         <li><NavLink className={({ isActive }) =>
             isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
@@ -189,7 +191,14 @@ const Navbar = () => {
                             </div> : <div className="flex gap-2"> <Link to={'/login'} className='lg:py-3 py-1 lg:px-6 px-4 flex items-center gap-2  border rounded-full hover:bg-teal-600 hover:text-white '><FaRegCircleUser className='md:text-xl text-lg ' /> Sign up</Link>
                             </div>
                         }
-                        <Link to={'/cart'} className=''><RiShoppingCartLine className='text-3xl' /></Link>
+                     <Link to={'/cart'} className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center  relative transition-colors">
+              <ShoppingCart size={26} />
+              {
+                cartProdcuts?.length > 0 && <span className="absolute -top-1 -right-1 text-white bg-orange-500  text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                {cartProdcuts?.length}
+              </span>
+              }
+            </Link>
                     </div>
                 </div>
 
