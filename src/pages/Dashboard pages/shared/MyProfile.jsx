@@ -24,26 +24,14 @@ const MyProfile = () => {
         email: user?.email,
         phone: user?.phone,
     });
-    // console.log(user);
-    // console.log(userInformation.usersInformation);
-console.log(user);
+    
+    console.log(user);
     const handleChange = (e) => {
         setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
     };
     return (
         <div >
-            <h1 className='text-lg'>Welcome <span className='font-semibold'> {userInformation?.name}</span></h1>
-
-            {/* <div className='p-10 bg-base-100  rounded-2xl h-full flex gap-6 shadow my-5'>
-                
-
-                <div >
-                    <h2>{userInformation?.name}</h2>
-                    <p>{userInformation?.email}</p>
-                    <p className='opacity-60 text-sm flex gap-2 my-2'><MdOutlineAdminPanelSettings className='text-xl' /> <span >{userInformation?.role}</span></p>
-                </div>
-            </div> */}
-
+            <h1 className='text-lg my-1'>Welcome <span className='font-semibold'> {user?.displayName}</span></h1>
 
             <div className="space-y-6">
 
@@ -54,59 +42,59 @@ console.log(user);
                         <img className='h-24 w-24 rounded-full object-cover  ' src={user?.photoURL} alt="user photo" />
                     </div>
 
-                 <div className='col-span-10'>
-                     <div className="flex items-center justify-between px-6 py-4 border-b border-gray-50">
-                        <div className="flex items-center gap-2">
-                            <User size={16} className="text-sky-500" />
-                            <h3 className="font-semibold text-gray-900">Personal Information</h3>
-                        </div>
-                        <button
-                            onClick={() => setEditMode((v) => !v)}
-                            className="flex items-center gap-1.5 text-sm font-medium text-sky-600 hover:text-sky-700 transition-colors"
-                        >
-                            {editMode ? (
-                                <>
-                                    <Check size={14} /> Save
-                                </>
-                            ) : (
-                                <>
-                                    <Edit2 size={14} /> Edit
-                                </>
-                            )}
-                        </button>
-                    </div>
-
-                    <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        {[
-                            { label: "Full Name", name: "name", icon: User },
-                            { label: "Email Address", name: "email", icon: Mail },
-                            { label: "Phone Number", name: "phone", icon: Phone },
-                        ].map(({ label, name, icon: Icon }) => (
-                            <div key={name} className={name === "email" ? "sm:col-span-1" : ""}>
-                                <label className="block text-xs font-medium text-gray-500 mb-1.5">{label}</label>
-                                {editMode ? (
-                                    <input
-                                    disabled={name === 'email'}
-                                        type="text"
-                                        name={name}
-                                        value={formData[name]}
-                                        onChange={handleChange}
-                                        className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 transition-colors"
-                                    />
-                                ) : (
-                                    <div className="flex items-center gap-2.5">
-                                        <Icon size={15} className="text-gray-300 flex-shrink-0" />
-                                        <p className="text-sm text-gray-800">{formData[name]}</p>
-                                    </div>
-                                )}
+                    <div className='col-span-10'>
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-50">
+                            <div className="flex items-center gap-2">
+                                <User size={16} className="text-sky-500" />
+                                <h3 className="font-semibold text-gray-900">Personal Information</h3>
                             </div>
-                        ))}
-                        <div>
-                            <label className="block text-xs font-medium text-gray-500 mb-1.5">Member Since</label>
-                            <p className="text-sm text-gray-800">{user?.memberSince}</p>
+                            <button
+                                onClick={() => setEditMode((v) => !v)}
+                                className="flex items-center gap-1.5 text-sm font-medium text-sky-600 hover:text-sky-700 transition-colors"
+                            >
+                                {editMode ? (
+                                    <>
+                                        <Check size={14} /> Save
+                                    </>
+                                ) : (
+                                    <>
+                                        <Edit2 size={14} /> Edit
+                                    </>
+                                )}
+                            </button>
+                        </div>
+
+                        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            {[
+                                { label: "Full Name", name: "name", icon: User },
+                                { label: "Email Address", name: "email", icon: Mail },
+                                { label: "Phone Number", name: "phone", icon: Phone },
+                            ].map(({ label, name, icon: Icon }) => (
+                                <div key={name} className={name === "email" ? "sm:col-span-1" : ""}>
+                                    <label className="block text-xs font-medium text-gray-500 mb-1.5">{label}</label>
+                                    {editMode ? (
+                                        <input
+                                            disabled={name === 'email'}
+                                            type="text"
+                                            name={name}
+                                            value={formData[name]}
+                                            onChange={handleChange}
+                                            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 transition-colors"
+                                        />
+                                    ) : (
+                                        <div className="flex items-center gap-2.5">
+                                            <Icon size={15} className="text-gray-300 flex-shrink-0" />
+                                            <p className="text-sm text-gray-800">{formData[name]}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                            <div>
+                                <label className="block text-xs font-medium text-gray-500 mb-1.5">Member Since</label>
+                                <p className="text-sm text-gray-800">{user?.memberSince}</p>
+                            </div>
                         </div>
                     </div>
-                   </div>
                 </div>
 
                 {/* Addresses */}
