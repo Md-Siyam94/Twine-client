@@ -21,7 +21,7 @@ const ProductCard = ({ product, refetch }) => {
 
     // Edit product
     const handleEdit = (id) => {
-        console.log(id);
+        // consolenpm .log(id);
     }
 
     // Delete product

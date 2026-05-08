@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard'
 
 const Men = () => {
     const [products, setProducts] = useState([])
-
+// console.log(products);
     useEffect(() => {
         fetch(`${import.meta.env.VITE_baseAPI}/products/men/products`)
             .then(res => res.json())
@@ -18,7 +18,7 @@ const Men = () => {
         <div className='lg:px-20 px-4 py-4'>
             <div className='grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4 '>
                 {
-                    products.map((product, index) => <ProductCard key={index} product={product}></ProductCard>)
+                    products.map((product, index) => <ProductCard key={index}  product={product}></ProductCard>)
                 }
             </div>
         </div>

@@ -1,23 +1,18 @@
-import { useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import useProducts from '../../hooks/useProducts';
 import ProductCard from '../../components/ProductCard';
 import CategoryProducts from '../../components/CategoryProducts';
 import { Outlet } from 'react-router-dom';
-
-
-
-
 import { Search, Filter, ShoppingBag, Loader } from 'lucide-react';
-// import { supabase } from './lib/supabase';
-// import { Product } from './types/product';
-// import { ProductCard } from './components/ProductCard';
+import { AuthContext } from '../../provider/AuthProvider';
+import { useContext } from 'react';
+
 
 const Products = () => {
-    // const [products] = useProducts()
 
     const [products,refetch, setProducts] = useProducts([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const {loading} = useContext(AuthContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [priceRange, setPriceRange] = useState('All');
@@ -32,30 +27,10 @@ const Products = () => {
     ];
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    useEffect(() => {
         filterProducts();
     }, [products, searchQuery, selectedCategory, priceRange]);
 
-    async function fetchProducts() {
-        try {
-            const { data, error } = await supabase
-                .from('products')
-                .select('*')
-                .order('created_at', { ascending: false });
-
-            if (error) throw error;
-            setProducts(data || []);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-
+    // filtering the products
     function filterProducts() {
         let filtered = [...products];
 
@@ -82,6 +57,8 @@ const Products = () => {
 
         setFilteredProducts(filtered);
     }
+
+    // console.log(filteredProducts);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">

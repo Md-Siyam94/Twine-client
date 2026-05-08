@@ -23,7 +23,6 @@ const isAdmin = useIsAdmin()
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location.pathname);
     const products = useTagWiseProducts(tag)
     // console.log(products);
     // useEffect(() => {
