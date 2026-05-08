@@ -86,6 +86,7 @@ console.log(user);
                                 <label className="block text-xs font-medium text-gray-500 mb-1.5">{label}</label>
                                 {editMode ? (
                                     <input
+                                    disabled={name === 'email'}
                                         type="text"
                                         name={name}
                                         value={formData[name]}

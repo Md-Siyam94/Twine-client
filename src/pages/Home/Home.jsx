@@ -33,9 +33,6 @@ const Home = () => {
                 <Facilities></Facilities>
             </section>
             <section>
-            <CategoryProducts category={"Panjabi"}></CategoryProducts>
-            </section>
-            <section>
                 <WinterArrivalse title={"Get What You Want"} description={'Discover pieces designed for comfort, warmth, and everyday elegance.From casual wear to standout looks, find styles that match your mood and moments.Crafted with quality fabrics to keep you comfortable all season long.'} image={ManShoping} reversClass='flex-row-reverse'></WinterArrivalse>
             </section>
             <section>
