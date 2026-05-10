@@ -17,6 +17,7 @@
     "firebase": "^12.3.0",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.1",
+    "lucide-react": "^1.7.0",
     "match-sorter": "^8.1.0",
     "motion": "^12.23.26",
     "react": "^19.1.1",

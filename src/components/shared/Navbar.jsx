@@ -16,6 +16,8 @@ import { ReactTyped } from 'react-typed';
 import useIsAdmin from '../../hooks/useIsAdmin';
 import { div } from 'motion/react-client';
 import { MdOutlineAddBusiness } from 'react-icons/md';
+import { ShoppingCart } from 'lucide-react';
+import useCartProducts from '../../hooks/useCartProducts';
 
 
 
@@ -27,7 +29,7 @@ const Navbar = () => {
     const location = useLocation()
     const path = location.pathname.slice(0, 10)
     const [isAdmin] = useIsAdmin()
-
+const [cartProdcuts, refetch] = useCartProducts([])
     const links = <>
         <li><NavLink className={({ isActive }) =>
             isActive ? "border-b-2 border-teal-600 pb-0.5 " : " hover:text-teal-600 "
@@ -71,7 +73,7 @@ const Navbar = () => {
     return (
         <div>
             <div className="navbar max-w-screen-2xl mx-auto fixed top-0 z-50 justify-between py-4 lg:px-20 bg-white/60 shadow-sm">
-                <div className=" ">
+                <div className="flex ">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
@@ -186,10 +188,17 @@ const Navbar = () => {
                                     <li><button onClick={handleLogOut}><FiLogOut className='text-xl' /> Log out</button></li>
                                 </ul>
                             </div>
-                            </div> : <div className="flex gap-2"> <Link to={'/login'} className='lg:py-3 py-1 px-6 flex items-center gap-2  border rounded-full hover:bg-teal-600 hover:text-white '><FaRegCircleUser className='text-xl ' /> Sign up</Link>
+                            </div> : <div className="flex gap-2"> <Link to={'/login'} className='lg:py-3 py-1 lg:px-6 px-4 flex items-center gap-2  border rounded-full hover:bg-teal-600 hover:text-white '><FaRegCircleUser className='md:text-xl text-lg ' /> Sign up</Link>
                             </div>
                         }
-                        <Link to={'/cart'} className=''><RiShoppingCartLine className='text-3xl' /></Link>
+                     <Link to={'/cart'} className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center  relative transition-colors">
+              <ShoppingCart size={26} />
+              {
+                cartProdcuts?.length > 0 && <span className="absolute -top-1 -right-1 text-white bg-orange-500  text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                {cartProdcuts?.length}
+              </span>
+              }
+            </Link>
                     </div>
                 </div>
 

@@ -7,7 +7,7 @@ const useIsAdmin = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useContext(AuthContext);
 
-    const {data: isAdmin = false, refetch}= useQuery({
+    const {data: isAdmin , refetch}= useQuery({
         queryKey: ['isAdmin', user?.email],
         queryFn: async()=>{
             const res = await axiosSecure.get(`/users/admin/${user?.email}`)

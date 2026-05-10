@@ -72,7 +72,7 @@ const Cart = () => {
         }
         axiosSecure.post("/payments/create-ssl-payment", orderInfo)
             .then(res => {
-                console.log(res.data);
+                console.log(res?.data);
             })
             .catch(err => {
                 console.log(err);
