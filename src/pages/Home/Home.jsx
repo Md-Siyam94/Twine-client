@@ -6,6 +6,7 @@ import Facilities from './Facilities';
 import WomanShoping from '../../assets/woman-shopping-street-smiling-winter.jpg'
 import ManShoping from '../../assets/man with cloth.jpg'
 import TagProducts from '../../components/shared/TagProducts';
+import Categories from './Categories';
 
 
 
@@ -16,6 +17,9 @@ const Home = () => {
         <div>
             <section>
                 <Hero></Hero>
+            </section>
+            <section>
+                <Categories></Categories>
             </section>
             {/* <section className='w-11/12 px-16 mx-auto py-24'>
                 <TargetAudiance></TargetAudiance>
