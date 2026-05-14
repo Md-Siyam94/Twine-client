@@ -6,7 +6,7 @@ import * as motion from "motion/react-client"
 
 const Hero = () => {
     return (
-        <div className='max-h-[calc(100vh-20vh)] lg:px-30 px-6 grid lg:grid-cols-5 grid-cols-1 py-10 lg:py-0  items-center'>
+        <div className='max-h-[calc(100vh-20vh)] lg:px-30 px-6 grid lg:grid-cols-5 grid-cols-1 py-10 lg:py-0  items-center '>
             <div className='col-span-3 '>
                 <motion.h1 initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
