@@ -23,8 +23,8 @@ const Hero = () => {
 
             </div>
             <div className='col-span-2  hidden lg:block '>
-                <img className='h-96 absolute ml-40 -z-40' src={Backgound} alt="" />
-                <img className='h-[580px] ml-35 ' src={Photo} alt="" />
+                <img className='h-96 absolute ml-38 -z-40' src={Backgound} alt="" />
+                <img className='h-[580px] ml-33 ' src={Photo} alt="" />
             </div>
         </div>
     );
