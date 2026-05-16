@@ -89,13 +89,13 @@ const isAdmin = useIsAdmin()
 
                     watchSlidesProgress={true}
                     spaceBetween={20}
-                    slidesPerView={1}
+                    slidesPerView={2}
                     grid={{
                         rows: 2,
                     }}
                     breakpoints={{
                         768: {
-                            slidesPerView: 2,
+                            slidesPerView:4,
                         },
                         992: {
                             slidesPerView: 5,
