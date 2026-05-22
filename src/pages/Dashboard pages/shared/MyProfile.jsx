@@ -36,9 +36,9 @@ const MyProfile = () => {
             <div className="space-y-6">
 
                 {/* Personal Info */}
-                <div className="bg-white grid grid-cols-12 gap-4 items-center rounded-2xl border border-gray-100 shadow-sm ">
+                <div className="bg-white grid lg:grid-cols-12 gap-4 items-center rounded-2xl border border-gray-100 shadow-sm ">
                     {/* image */}
-                    <div className='col-span-2 mx-auto'>
+                    <div className='col-span-2 mt-4 ml-4 mx-auto'>
                         <img className='h-24 w-24 rounded-full object-cover  ' src={user?.photoURL} alt="user photo" />
                     </div>
 

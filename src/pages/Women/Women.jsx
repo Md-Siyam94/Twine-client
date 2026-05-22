@@ -14,7 +14,7 @@ const Women = () => {
     }, [])
     return (
 
-        <div className='lg:px-20 px-4 py-4'>
+        <div className='max-w-7xl mx-auto px-4 py-4'>
             <div className='grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-4 '>
                 {
                     products.map((product, index) => <ProductCard key={index} product={product}></ProductCard>)

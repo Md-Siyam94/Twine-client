@@ -1,4 +1,4 @@
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useProducts from '../../hooks/useProducts';
 import ProductCard from '../../components/ProductCard';
 import CategoryProducts from '../../components/CategoryProducts';
@@ -10,9 +10,9 @@ import { useContext } from 'react';
 
 const Products = () => {
 
-    const [products,refetch, setProducts] = useProducts([]);
+    const [products, refetch, setProducts] = useProducts([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
-    const {loading} = useContext(AuthContext);
+    const { loading } = useContext(AuthContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [priceRange, setPriceRange] = useState('All');
@@ -62,22 +62,7 @@ const Products = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-            <header className="bg-white shadow-sm sticky top-0 z-10 border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-
-                    <div className="relative">
-                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                        <input
-                            type="text"
-                            placeholder="Search products..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all"
-                        />
-                    </div>
-                </div>
-            </header>
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="flex flex-col lg:flex-row gap-8">
@@ -97,8 +82,8 @@ const Products = () => {
                                                 key={category}
                                                 onClick={() => setSelectedCategory(category)}
                                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${selectedCategory === category
-                                                        ? 'bg-teal-600 text-white'
-                                                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                                                    ? 'bg-teal-600 text-white'
+                                                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                                                     }`}
                                             >
                                                 {category}
@@ -115,8 +100,8 @@ const Products = () => {
                                                 key={range.label}
                                                 onClick={() => setPriceRange(range.label)}
                                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${priceRange === range.label
-                                                        ? 'bg-teal-600 text-white'
-                                                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                                                    ? 'bg-teal-600 text-white'
+                                                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                                                     }`}
                                             >
                                                 {range.label}
@@ -142,10 +127,26 @@ const Products = () => {
                     </aside>
 
                     <div className="flex-1">
-                        <div className="mb-6 flex items-center justify-between">
+                        <div className="mb-6 flex items-center  ">
                             <p className="text-gray-600">
                                 Showing <span className="font-semibold text-gray-900">{filteredProducts.length}</span> products
                             </p>
+                            {/* <header className="bg-white shadow-sm sticky top-0 z-10 border-b border-gray-200"> */}
+                                <div className=" mx-auto flex-1 lg:pl-12">
+
+
+                                    <div className="relative">
+                                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                                        <input
+                                            type="text"
+                                            placeholder="Search products..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all"
+                                        />
+                                    </div>
+                                </div>
+                            {/* </header> */}
                         </div>
 
                         {loading ? (
