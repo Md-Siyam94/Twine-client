@@ -4,6 +4,7 @@ import useUser from '../../../hooks/useUser';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { useState } from "react";
 import { MapPin, CreditCard, User, Mail, Phone, Plus, Check, Trash2, CreditCard as Edit2 } from "lucide-react";
+import moment from 'moment/moment';
 
 function CardIcon({ type }) {
     const colors = { visa: "text-blue-700", mastercard: "text-red-600" };
@@ -25,13 +26,13 @@ const MyProfile = () => {
         phone: user?.phone,
     });
     
-    console.log(user);
+    console.log(userInformation);
     const handleChange = (e) => {
         setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
     };
     return (
         <div >
-            <h1 className='text-lg my-1'>Welcome <span className='font-semibold'> {user?.displayName}</span></h1>
+            <h1 className='text-lg my-1'>Welcome <span className='font-semibold'> {userInformation?.name}</span></h1>
 
             <div className="space-y-6">
 
@@ -39,7 +40,7 @@ const MyProfile = () => {
                 <div className="bg-white grid lg:grid-cols-12 gap-4 items-center rounded-2xl border border-gray-100 shadow-sm ">
                     {/* image */}
                     <div className='col-span-2 mt-4 ml-4 mx-auto'>
-                        <img className='h-24 w-24 rounded-full object-cover  ' src={user?.photoURL} alt="user photo" />
+                        <img className='h-24 w-24 rounded-full object-cover  ' src={userInformation?.photoURL} alt="user photo" />
                     </div>
 
                     <div className='col-span-10'>
@@ -91,7 +92,7 @@ const MyProfile = () => {
                             ))}
                             <div>
                                 <label className="block text-xs font-medium text-gray-500 mb-1.5">Member Since</label>
-                                <p className="text-sm text-gray-800">{user?.memberSince}</p>
+                                <p className="text-sm text-gray-800">{moment(userInformation?.createdAt).format('LL')}</p>
                             </div>
                         </div>
                     </div>
