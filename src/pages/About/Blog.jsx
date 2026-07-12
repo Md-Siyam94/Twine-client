@@ -1,4 +1,5 @@
 import React from 'react';
+import BlogCard from '../../components/BlogCard';
 
 const Blog = () => {
     const blogPosts = [
@@ -67,7 +68,7 @@ const Blog = () => {
                     </div>
                 </div>
             </section>
-            {/* <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-light tracking-wider mb-4">LATEST STORIES</h2>
                     <p className="text-gray-600 tracking-wide">Insights, inspiration, and the art of thoughtful design</p>
@@ -75,11 +76,11 @@ const Blog = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {blogPosts.map((post) => (
-                        // <BlogCard key={post.id} post={post} />
-                        <div></div>
+                        <BlogCard key={post.id} post={post} />
+                        
                     ))}
                 </div>
-            </section> */}
+            </section>
             <section className="bg-gray-50 py-20">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl md:text-5xl font-light tracking-wider mb-4">

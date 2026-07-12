@@ -7,6 +7,7 @@ import WomanShoping from '../../assets/woman-shopping.webp'
 import ManShoping from '../../assets/_man with cloth.webp'
 import TagProducts from '../../components/shared/TagProducts';
 import Categories from './Categories';
+import Descount from './Descount';
 
 
 
@@ -23,10 +24,13 @@ const Home = () => {
             </section>
             {/* <section className='w-11/12 px-16 mx-auto py-24'>
                 <TargetAudiance></TargetAudiance>
-            </section> */}
+                </section> */}
             <section>
             <CategoryProducts category={"T-shirt"}></CategoryProducts>
             </section>
+                <section>
+                    <Descount></Descount>
+                </section>
             <section className=' '>
                 <WinterArrivalse title={'Winter Arrival'}  description={'From soft fabrics to timeless designs, winter fashion meets everyday elegance.Stay warm, stay stylish, and make every winter moment feel special. This season is all about comfort, confidence, and effortless charm.'} image={WomanShoping} ></WinterArrivalse>
             </section>
