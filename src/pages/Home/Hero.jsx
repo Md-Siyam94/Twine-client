@@ -1,5 +1,5 @@
-import Backgound from '../../assets/creative-rounded-lines-edge-place-text-business-brochure-banner-poster-template-background.png'
-import Photo from '../../assets/handsome-confident-young-curly-haired-man-drinking-coffee-standing-infront-isolated-white-wall.png'
+import Backgound from '../../assets/herobg-1.webp'
+import Photo from '../../assets/herobg-2.webp'
 import { Link } from 'react-router-dom';
 import { FaShopify } from 'react-icons/fa6';
 import * as motion from "motion/react-client"

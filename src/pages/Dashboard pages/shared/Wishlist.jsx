@@ -88,7 +88,7 @@ const Wishlist = () => {
                     // ToDo: fix bugs
                     axiosPublic.delete(`/wishlist/${wishlistId}`)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                             if (res.data?.deletedCount) {
                                 refetch()
                                 Swal.fire({

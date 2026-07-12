@@ -3,8 +3,8 @@ import Hero from './Hero';
 import CategoryProducts from '../../components/CategoryProducts';
 import WinterArrivalse from './WinterArrivalse';
 import Facilities from './Facilities';
-import WomanShoping from '../../assets/woman-shopping-street-smiling-winter.jpg'
-import ManShoping from '../../assets/man with cloth.jpg'
+import WomanShoping from '../../assets/woman-shopping.webp'
+import ManShoping from '../../assets/_man with cloth.webp'
 import TagProducts from '../../components/shared/TagProducts';
 import Categories from './Categories';
 

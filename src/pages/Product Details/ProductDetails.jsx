@@ -46,7 +46,7 @@ const ProductDetails = () => {
             color: color,
 
         }
-        console.log(productInfo);
+        // console.log(productInfo);
         axiosPublic.post("/cart_products", productInfo)
             .then(res => {
                 if (res?.data?.success) {
@@ -94,7 +94,7 @@ const ProductDetails = () => {
             color: color,
 
         }
-        console.log(productInfo);
+        // console.log(productInfo);
         axiosPublic.post("/wishlist", productInfo)
             .then(res => {
                 // console.log(res?.data);

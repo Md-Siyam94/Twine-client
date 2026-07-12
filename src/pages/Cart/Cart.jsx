@@ -47,7 +47,7 @@ const Cart = () => {
         const phone = form.phone.value;
         const address = form.address.value;
         const special_instructions = form.special_instructions.value;
-        console.log(phone, address, special_instructions);
+        // console.log(phone, address, special_instructions);
 
         const orderInfo = {
             email: user?.email,

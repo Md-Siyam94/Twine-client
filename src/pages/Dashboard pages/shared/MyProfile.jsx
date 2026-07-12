@@ -26,7 +26,7 @@ const MyProfile = () => {
         phone: user?.phone,
     });
     
-    console.log(userInformation);
+    // console.log(userInformation);
     const handleChange = (e) => {
         setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
     };

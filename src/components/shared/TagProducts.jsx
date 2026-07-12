@@ -31,7 +31,7 @@ const isAdmin = useIsAdmin()
 
 
     const handleDelete = (id) => {
-        console.log(`Delete ${id}`);
+        // console.log(`Delete ${id}`);
     }
 
     // product add to card

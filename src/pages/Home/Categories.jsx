@@ -45,7 +45,7 @@ export default function Categories() {
   }
 ]
 
-    console.log(categories)
+    // console.log(categories)
   return (
     <div className='grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-3 items-center px-5 max-w-7xl mx-auto py-10'>
         {

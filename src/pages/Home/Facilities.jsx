@@ -1,8 +1,8 @@
 import React from 'react';
-import Icon1 from "../../assets/fabric.png"
-import Icon2 from "../../assets/return-box.png"
-import Icon3 from "../../assets/free-shipping.png"
-import Icon4 from "../../assets/gift.png"
+import Icon1 from "../../assets/_fabric.webp"
+import Icon2 from "../../assets/_return-box.webp"
+import Icon3 from "../../assets/_free-shipping.webp"
+import Icon4 from "../../assets/_gift.webp"
 import * as motion from "motion/react-client"
 const Facilities = () => {
     return (

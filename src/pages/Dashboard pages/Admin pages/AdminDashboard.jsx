@@ -3,7 +3,7 @@ import useGetUsers from '../../../hooks/useGetUsers';
 
 const AdminDashboard = () => {
     const [users] = useGetUsers()
-    console.log(users);
+    // console.log(users);
     return (
         <div>
             
