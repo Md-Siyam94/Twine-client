@@ -17,7 +17,7 @@ const WinterArrivalse = ({title, description,image, reversClass = ''}) => {
                 </div>
             </div>
             <div className={reversClass ?"flex-1 mt-6": 'flex-1 justify-items-end mt-6' }>
-                <img className='lg:h-88 w-full object-cover' src={image} alt="" />
+                <img className='lg:h-88 w-full rounded-xl object-cover' src={image} alt="" />
             </div>
         </div>
     );
