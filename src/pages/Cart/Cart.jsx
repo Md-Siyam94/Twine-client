@@ -60,15 +60,15 @@ const Cart = () => {
             totalPrice: totalPrice,
             status: "pending"
         }
-        if(selected.length === 0){
-            return document.getElementById("my_modal_1").close()  &&  Swal.fire({
+        if (selected.length === 0) {
+            return document.getElementById("my_modal_1").close() && Swal.fire({
                 position: "top-end",
                 icon: "error",
                 title: "select products to buy!",
                 showConfirmButton: false,
                 timer: 1500
-              });
-           
+            });
+
         }
         axiosSecure.post("/payments/create-ssl-payment", orderInfo)
             .then(res => {
@@ -192,9 +192,16 @@ const Cart = () => {
                         </table> : <div >
 
                             <Lottie className='h-72 w-full ' animationData={noData} loop></Lottie>
-                            <h1 className='text-xl font-semibold text-center'>You haven't added any products to your cart.</h1>
+                            <h2 className="text-2xl font-semibold text-center text-gray-800 mb-3">
+                                Your cart is empty
+                            </h2>
+                            <p className="text-gray-400 text-sm text-center leading-relaxed mb-10">
+                                Looks like you have not made<br />your choice yet...
+                            </p>
+
+                            {/* redirect to product page */}
                             <div className='my-3 grid justify-center '>
-                                <Link to={"/products"} className='py-2 px-5 w-full mx-auto  rounded-full bg-teal-600 text-white hover:bg-teal-700'>Let's Shoping</Link>
+                                <Link to={"/products"} className="w-full border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-medium py-3 px-5 rounded-lg transition-all duration-200 text-sm tracking-wide">Start Shopping</Link>
                             </div>
                         </div>
                 }

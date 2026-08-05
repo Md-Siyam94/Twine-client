@@ -26,11 +26,11 @@ const Footer = () => {
     { label: 'Lily Support', href: '#' },
   ];
   return (
-    <footer className="bg-gradient-to-r from-[#163634] to-[#192A29] text-gray-100 py-16">
+    <footer className="bg-gradient-to-r from-[#163634] to-[#192A29] text-gray-100 pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-4">
         
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-18">
           <div>
            <Link to={"/"} className="">
            <h2 className='text-3xl '>Twine Were</h2>
