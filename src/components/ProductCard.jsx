@@ -10,6 +10,7 @@ import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { AuthContext } from '../provider/AuthProvider';
 import useCartProducts from '../hooks/useCartProducts';
+import { Rating } from 'react-simple-star-rating'
 
 const ProductCard = ({ product, refetch }) => {
     const { user } = useContext(AuthContext)
@@ -127,18 +128,30 @@ const ProductCard = ({ product, refetch }) => {
                             alt={product?.category} />
                     </figure>
                 </Link>
-                <div className="px-3 pb-4 ">
-                    <h2 className="card-title ">
+                <div className="px-3 pt-4 pb-4 ">
+                    <h2 className="text-sm  ">
                         {product?.name}
                     </h2>
                     {/* <p className=" text-sm">Price: <span className='text-md font-semibold'>{product?.price} {product?.currency}</span></p> */}
                     <Link to={`/product-details/${product?._id}`}>
                         {/* <p className='text-sm opacity-60'>{product?.description?.slice(0, 40)}...more</p> */}
                     </Link>
+                   <div className='flex items-end gap-2 '>
+                     <Rating
+                        initialValue={product?.rating}
+                        readonly
+                        size={16}
+                        fillColor="#f97316"
+                        emptyColor="#d1d5db"
+                        allowFraction
+                        SVGstyle={{ display: 'inline' }}
+                    />
+                    <p className="text-xs text-gray-500">({product?.rating} Ratings)</p>
+                   </div>
                     <div className='my-2'>
                         {
-                        product?.descountPrice ? <p className='text-lg text-amber-600  font-semibold'><span className='line-through'>{product?.price}</span> <span>{product?.descountPrice}</span> ৳ </p> : <p className='text-lg text-amber-600 font-semibold'><span>{product?.price}</span> ৳ </p>
-                    }
+                            product?.descountPrice ? <p className='   font-semibold'> <span className='text-lg mr-2'>৳{product?.descountPrice}</span><span className='line-through text-xs text-gray-400 '>৳{product?.price}</span> </p> : <p className='text-lg font-semibold'><span>{product?.price}</span> ৳ </p>
+                        }
                     </div>
                     <div className="card-actions  justify-center">
                         <button onClick={() => handleAddToCart(product?._id)} className="border  border-teal-600 text-teal-600 cursor-pointer hover:text-white hover:bg-teal-700 py-2 font-semibold px-8 rounded-full md:text-md text-sm  ">Add to Cart</button>
