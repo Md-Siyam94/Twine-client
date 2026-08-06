@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { FiHeart } from "react-icons/fi";
 
 
 const ProductDetails = () => {
@@ -29,7 +30,7 @@ const ProductDetails = () => {
 
     // product add to card
     const handleAddToCart = (id) => {
-        if(!user){
+        if (!user) {
             navigate('/login')
         }
         const productInfo = {
@@ -75,7 +76,7 @@ const ProductDetails = () => {
 
     // add product in wishlist
     const handleAddToWishlist = (id) => {
-        if(!user){
+        if (!user) {
             navigate('/login')
         }
         const productInfo = {
@@ -144,8 +145,8 @@ const ProductDetails = () => {
                     </p>
                     <p>TK. <span className="text-lg font-semibold">{price} {currency}</span></p>
                     <div className="my-6 grid md:grid-cols-2  gap-4">
-                        <button  onClick={() => handleAddToCart(_id)} type="button" className="py-3 px-10  rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Cart<RiShoppingCartLine className='text-2xl' /></button>
-                        <button onClick={() => handleAddToWishlist(_id)} type="button" className="py-3 px-10 mt-5 lg:mt-0 rounded-lg bg-teal-400 hover:bg-teal-500 hover:cursor-pointer hover:text-white flex gap-2">Add to Wishlist<FaRegHeart className="text-2xl" /></button>
+                        <button onClick={() => handleAddToCart(_id)} className="border  border-teal-600 text-teal-600 cursor-pointer hover:text-white hover:bg-teal-700 py-3 font-semibold px-12 rounded-full md:text-md text-md  ">Add to Cart</button>
+                        <button onClick={() => handleAddToWishlist(_id)} type="button" ><FiHeart className="text-4xl text-teal-500 hover:text-teal-800" /></button>
                     </div>
                 </div>
             </div>

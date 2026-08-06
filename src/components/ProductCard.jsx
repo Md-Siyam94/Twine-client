@@ -11,7 +11,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { AuthContext } from '../provider/AuthProvider';
 import useCartProducts from '../hooks/useCartProducts';
 import { Rating } from 'react-simple-star-rating'
-import { FaRegHeart } from 'react-icons/fa';
+import { FiHeart } from "react-icons/fi";
 
 const ProductCard = ({ product, refetch }) => {
     const { user } = useContext(AuthContext)
@@ -161,7 +161,7 @@ console.log(id);
                     </div>
                     <div className="card-actions items-center gap-4 justify-center">
                         <button onClick={() => handleAddToCart(product?._id)} className="border  border-teal-600 text-teal-600 cursor-pointer hover:text-white hover:bg-teal-700 py-2 font-semibold px-8 rounded-full md:text-md text-sm  ">Add to Cart</button>
-                         <button onClick={() => handleAddToWishlist(_id)} type="button" ><FaRegHeart className="text-3xl text-teal-500 hover:text-teal-800" /></button>
+                         <button onClick={() => handleAddToWishlist(_id)} type="button" ><FiHeart className="text-3xl text-teal-500 hover:text-teal-800" /></button>
                     </div>
                 </div>
             </motion.div>
