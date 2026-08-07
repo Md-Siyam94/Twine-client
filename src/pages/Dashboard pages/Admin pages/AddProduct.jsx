@@ -74,7 +74,7 @@ const AddProduct = () => {
                     {/* product name */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product Name</span>
+                            <span className="label-text text-black text-sm mb-1">Product Name</span>
                         </label><br />
                         <input type="text" {...register("name")} placeholder="Product Name" className="input input-bordered w-full" />
                         <div>
@@ -85,7 +85,7 @@ const AddProduct = () => {
                      {/* product category */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product Category</span>
+                            <span className="label-text text-black text-sm mb-1">Product Category</span>
                         </label><br />
                         <input type="text" {...register("category")} placeholder="e.g. T-shirt" className="input input-bordered w-full" />
                         <div>
@@ -95,7 +95,7 @@ const AddProduct = () => {
                     {/* brand */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product Brand</span>
+                            <span className="label-text text-black text-sm mb-1">Product Brand</span>
                         </label><br />
                         <input type="text" {...register("brand")} placeholder="Brand name" className="input input-bordered w-full" />
                         <div>
@@ -106,42 +106,54 @@ const AddProduct = () => {
                     {/* material */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product metarial</span>
+                            <span className="label-text text-black text-sm mb-1">Product metarial</span>
                         </label><br />
                         <input type="text" {...register("material")} placeholder="e.g. cotton or silk " className="input input-bordered w-full" />
                         <div>
                             {errors.material?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                    {/* size */}
+                    {/* sizes */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product size</span>
+                            <span className="label-text text-black text-sm mb-1">Product sizes</span>
                         </label><br />
-                        <input type="text" {...register("size")} placeholder="Product size" className="input input-bordered w-full" />
+                        <input type="text" {...register("size")} placeholder="e.g. L, M, XL" className="input input-bordered w-full" />
                         <div>
                             {errors.size?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
 
-                    {/* color */}
+                    {/* colors */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product color</span>
+                            <span className="label-text text-black text-sm mb-1">Product colors</span>
                         </label><br />
-                        <input type="text" {...register("color")} placeholder="Color " className="input input-bordered w-full" />
+                        <input type="text" {...register("color")} placeholder="e.g. Red, Blue, Orange " className="input input-bordered w-full" />
                         <div>
                             {errors.color?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                    {/* price & audiance */}
-                    <div className="grid grid-cols-2 gap-4 justify-evenly items-center ">
-                        {/* price */}
+                    <div>
+                         {/* price */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Price</span>
+                                <span className="label-text text-black text-sm mb-1">Price</span>
                             </label><br />
                             <input type="number" {...register("price")} placeholder="Product price" className="input input-bordered w-full" />
+                            <div>
+                                {errors.price?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This filed is required !</p>}
+                            </div>
+                        </div>
+                    </div>
+                    {/* price & audiance */}
+                    <div className="grid grid-cols-2 gap-4 justify-evenly items-center ">
+                        {/* In stock */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-black text-sm mb-1">In Stock</span>
+                            </label><br />
+                            <input type="number" {...register("price")} placeholder="Stock number" className="input input-bordered w-full" />
                             <div>
                                 {errors.price?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This filed is required !</p>}
                             </div>
@@ -149,7 +161,7 @@ const AddProduct = () => {
                         {/* audiance */}
                         <div>
                             <label className="label">
-                                <span className="label-text">Audience</span>
+                                <span className="label-text text-black text-sm mb-1">Audience</span>
                             </label><br />
                             <select {...register("targetAudience", { required: true })} defaultValue="choose a audience" className="select select-success">
                                 <option disabled={true}>choose a audience</option>
@@ -162,7 +174,7 @@ const AddProduct = () => {
                     {/* currency */}
                     {/* <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Currency</span>
+                            <span className="label-text text-black text-sm mb-1">Currency</span>
                         </label><br />
                         <input type="text" {...register("currency")} placeholder="Currency" className="input input-bordered w-full" />
                         <div>
@@ -172,7 +184,7 @@ const AddProduct = () => {
                     {/* description */}
                     <label className="form-control my-2">
                         <div className="label">
-                            <span className="label-text">Description</span>
+                            <span className="label-text text-black text-sm mb-1">Description</span>
                         </div><br />
                         <textarea {...register("description")} className="textarea textarea-bordered h-24 w-full" placeholder="Write about product" ></textarea>
                         <div>
@@ -182,7 +194,7 @@ const AddProduct = () => {
                     {/* image */}
                     {/* <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text">Add image</span>
+                        <span className="label-text text-black text-sm mb-1">Add image</span>
                     </div>
                     <input multiple type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full max-w-xs" />
                     <div>
@@ -205,7 +217,7 @@ const AddProduct = () => {
 
                     <label className="form-control w-full max-w-xs">
                         <div className="label">
-                            <span className="label-text">Add image</span>
+                            <span className="label-text text-black text-sm mb-1">Add image</span>
                         </div>
                         <input multiple type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full max-w-xs" />
                         <div>
