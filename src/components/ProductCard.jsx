@@ -20,7 +20,7 @@ const ProductCard = ({ product, refetch }) => {
     const location = useLocation()
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
-
+console.log(isAdmin);
     // Edit product
     const handleEdit = (id) => {
         // consolenpm .log(id);
@@ -113,7 +113,8 @@ console.log(id);
             delay: 20,
 
         })
-    }, [])
+    },[])
+    
     return (
         <SwiperSlide data-aos="fade-up" data-aos-easing="ease-in-out"
             data-aos-mirror="true" className='aos-animate aos-init'>

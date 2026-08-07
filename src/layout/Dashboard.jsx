@@ -16,7 +16,7 @@ const Dashboard = () => {
     const userInformation = useUser()
     const [isAdmin] = useIsAdmin()
     const {logOutUser} = useContext(AuthContext)
-
+    console.log(isAdmin,"checking is admin");
     const handleLogOut = () => {
         logOutUser()
         .then()

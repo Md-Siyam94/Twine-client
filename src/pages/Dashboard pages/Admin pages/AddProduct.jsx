@@ -66,7 +66,7 @@ const AddProduct = () => {
     }
     return (
         <div className=" grid grid-cols-12 gap-8">
-            <form onSubmit={handleSubmit(onSubmit)} className=" rounded-xl p-10 col-span-7 bg-base-100 ">
+            <form onSubmit={handleSubmit(onSubmit)} className=" rounded-xl p-4 col-span-7 bg-base-100 ">
                 <fieldset className="fieldset">
                     {/* <label className="label">Email</label>
           <input type="email" className="input" placeholder="Email" /> */}
@@ -81,12 +81,13 @@ const AddProduct = () => {
                             {errors.name?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                    {/* product category */}
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     {/* product category */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Product Category</span>
                         </label><br />
-                        <input type="text" {...register("category")} placeholder="Product category" className="input input-bordered w-full" />
+                        <input type="text" {...register("category")} placeholder="e.g. T-shirt" className="input input-bordered w-full" />
                         <div>
                             {errors.category?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
@@ -101,12 +102,13 @@ const AddProduct = () => {
                             {errors.brand?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
+                   </div>
                     {/* material */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Product metarial</span>
                         </label><br />
-                        <input type="text" {...register("material")} placeholder="Material name  " className="input input-bordered w-full" />
+                        <input type="text" {...register("material")} placeholder="e.g. cotton or silk " className="input input-bordered w-full" />
                         <div>
                             {errors.material?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
@@ -158,7 +160,7 @@ const AddProduct = () => {
                         </div>
                     </div>
                     {/* currency */}
-                    <div className="form-control">
+                    {/* <div className="form-control">
                         <label className="label">
                             <span className="label-text">Currency</span>
                         </label><br />
@@ -166,7 +168,7 @@ const AddProduct = () => {
                         <div>
                             {errors.metarial?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
-                    </div>
+                    </div> */}
                     {/* description */}
                     <label className="form-control my-2">
                         <div className="label">
@@ -198,7 +200,7 @@ const AddProduct = () => {
                     </div>
                 </fieldset>
             </form>
-            <form onSubmit={handleSubmit(onSubmit)} className=" bg-base-100 rounded-xl p-10 col-span-5">
+            <form onSubmit={handleSubmit(onSubmit)} className=" bg-base-100 rounded-xl p-4 col-span-5">
                 <fieldset className="fieldset">
 
                     <label className="form-control w-full max-w-xs">
