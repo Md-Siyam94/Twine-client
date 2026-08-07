@@ -14,7 +14,7 @@ const useIsAdmin = () => {
         },
         enabled: !!user?.email
     })
-    console.log(isAdmin, "from isAdmin");
+    // console.log(isAdmin, "from isAdmin");
     return [isAdmin, refetch]
 };
 

@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import axios from "axios";
+import ImageUploader from "../../../components/ImageUploader";
+import { Tag } from "lucide-react";
 
 
 
@@ -12,54 +15,69 @@ const AddProduct = () => {
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
     const [uploading, setUploading] = useState(false)
+    const [images, setImages] = useState([]);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
 
         setUploading(true)
-        const imageFile = { image: data?.image[0] }
-        // console.log(imageFile);
-        const res = await axiosSecure.post(img_hosting_api, imageFile, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        });
-        // console.log(res?.data?.data?.display_url);
-        if (res?.data?.success) {
-            const productInfo = {
-                name: data?.name,
-                brand: data?.brand,
-                price: data?.price,
-                category: data?.category,
-                images: res?.data?.data?.display_url,
-                sizes: data.size ? data.size.split(",") : [],
-                colors: data?.color ? data?.color.split(",") : [],
-                material: data?.material,
-                targetAudience: data?.targetAudience,
-                description: data?.description,
+        //   console.log(images);
+        
+           const uploadImages = images.map(async (file) => {
+                const imageFile = { image: file?.file}
+                console.log(file?.file);
+                // const formData = new FormData()
 
-
-            }
-            // console.log(productInfo);
-            axiosSecure.post('/products', productInfo)
-                .then(res => {
-                    // console.log(res.data);
-                    if (res?.data?.success) {
-                        setUploading(false)
-                        reset()
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Product has been uploaded",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                // formData.append("image", file)
+                const res = await axios.post(img_hosting_api, imageFile, {
+                    headers: {
+                        'content-type': 'multipart/form-data'
                     }
-                })
-                .catch(err => {
-                    console.log('error from add product', err);
-                })
-        }
+                });
+               
+                return res?.data?.data.url
+            })
+        
+const imageUrls = await Promise.all(uploadImages);
+console.log(imageUrls);
+
+
+        // console.log(res?.data?.data?.display_url);
+        // if (res?.data?.success) {
+        //     const productInfo = {
+        //         name: data?.name,
+        //         brand: data?.brand,
+        //         price: data?.price,
+        //         category: data?.category,
+        //         images: res?.data?.data?.display_url,
+        //         sizes: data.size ? data.size.split(",") : [],
+        //         colors: data?.color ? data?.color.split(",") : [],
+        //         material: data?.material,
+        //         targetAudience: data?.targetAudience,
+        //         description: data?.description,
+
+
+        //     }
+        //     // console.log(productInfo);
+        //     axiosSecure.post('/products', productInfo)
+        //         .then(res => {
+        //             // console.log(res.data);
+        //             if (res?.data?.success) {
+        //                 setUploading(false)
+        //                 reset()
+        //                 Swal.fire({
+        //                     position: "top-end",
+        //                     icon: "success",
+        //                     title: "Product has been uploaded",
+        //                     showConfirmButton: false,
+        //                     timer: 1500
+        //                 });
+        //             }
+        //         })
+        //         .catch(err => {
+        //             console.log('error from add product', err);
+        //         })
+        // }
 
         // console.log(data);
 
@@ -74,35 +92,35 @@ const AddProduct = () => {
                     {/* product name */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-black text-sm mb-1">Product Name</span>
+                            <span className="label-text text-black text-sm mb-1">Product Name<span className="text-red-500 text-lg">*</span></span>
                         </label><br />
-                        <input type="text" {...register("name")} placeholder="Product Name" className="input input-bordered w-full" />
+                        <input type="text" {...register("name")} placeholder="e.g. Designer Georgette Saree" className="input input-bordered w-full" />
                         <div>
                             {errors.name?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     {/* product category */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-black text-sm mb-1">Product Category</span>
-                        </label><br />
-                        <input type="text" {...register("category")} placeholder="e.g. T-shirt" className="input input-bordered w-full" />
-                        <div>
-                            {errors.category?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* product category */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-black text-sm mb-1">Product Category<span className="text-red-500 text-lg">*</span></span>
+                            </label><br />
+                            <input type="text" {...register("category")} placeholder="e.g. T-shirt" className="input input-bordered w-full" />
+                            <div>
+                                {errors.category?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
+                            </div>
+                        </div>
+                        {/* brand */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-black text-sm mb-1">Product Brand</span>
+                            </label><br />
+                            <input type="text" {...register("brand")} placeholder="Brand name" className="input input-bordered w-full" />
+                            <div>
+                                {errors.brand?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
+                            </div>
                         </div>
                     </div>
-                    {/* brand */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-black text-sm mb-1">Product Brand</span>
-                        </label><br />
-                        <input type="text" {...register("brand")} placeholder="Brand name" className="input input-bordered w-full" />
-                        <div>
-                            {errors.brand?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
-                        </div>
-                    </div>
-                   </div>
                     {/* material */}
                     <div className="form-control">
                         <label className="label">
@@ -134,8 +152,9 @@ const AddProduct = () => {
                             {errors.color?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </div>
-                    <div>
-                         {/* price */}
+                    {/* Price and Discount Price */}
+                    <div className="grid grid-cols-2 gap-4 justify-evenly items-center ">
+                        {/* price */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-black text-sm mb-1">Price</span>
@@ -143,6 +162,16 @@ const AddProduct = () => {
                             <input type="number" {...register("price")} placeholder="Product price" className="input input-bordered w-full" />
                             <div>
                                 {errors.price?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This filed is required !</p>}
+                            </div>
+                        </div>
+                        {/* discount price */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-black text-sm mb-1">Discount price</span>
+                            </label><br />
+                            <input type="number" {...register("discountPrice")} placeholder="Product price" className="input input-bordered w-full" />
+                            <div>
+                                {errors.discountPrice?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This filed is required !</p>}
                             </div>
                         </div>
                     </div>
@@ -153,9 +182,9 @@ const AddProduct = () => {
                             <label className="label">
                                 <span className="label-text text-black text-sm mb-1">In Stock</span>
                             </label><br />
-                            <input type="number" {...register("price")} placeholder="Stock number" className="input input-bordered w-full" />
+                            <input type="number" {...register("inStock")} placeholder="Stock number" className="input input-bordered w-full" />
                             <div>
-                                {errors.price?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This filed is required !</p>}
+                                {errors.inStock?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This filed is required !</p>}
                             </div>
                         </div>
                         {/* audiance */}
@@ -171,16 +200,17 @@ const AddProduct = () => {
                             </select>
                         </div>
                     </div>
-                    {/* currency */}
-                    {/* <div className="form-control">
+                    {/* Tags */}
+                    <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-black text-sm mb-1">Currency</span>
+                            <span className="label-text text-black text-sm mb-1">Product tags</span>
                         </label><br />
-                        <input type="text" {...register("currency")} placeholder="Currency" className="input input-bordered w-full" />
+                        <input type="text" {...register("tags")} placeholder="e.g. Daily were " className="input input-bordered w-full" />
                         <div>
-                            {errors.metarial?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
+                            {errors.tasg?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
-                    </div> */}
+                    </div>
+
                     {/* description */}
                     <label className="form-control my-2">
                         <div className="label">
@@ -191,17 +221,6 @@ const AddProduct = () => {
                             {errors.description?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
                     </label>
-                    {/* image */}
-                    {/* <label className="form-control w-full max-w-xs">
-                    <div className="label">
-                        <span className="label-text text-black text-sm mb-1">Add image</span>
-                    </div>
-                    <input multiple type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full max-w-xs" />
-                    <div>
-                        {errors.image?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>Please select an Image for package</p>}
-                    </div>
-                </label> */}
-
                     <div>
                         <button className="bg-teal-600 w-48 text-md py-3 rounded-full text-white bg-linear-80 from-teal-500 to-gray-500
                          mt-8">
@@ -212,10 +231,10 @@ const AddProduct = () => {
                     </div>
                 </fieldset>
             </form>
-            <form onSubmit={handleSubmit(onSubmit)} className=" bg-base-100 rounded-xl p-4 col-span-5">
+            <form onSubmit={handleSubmit(onSubmit)} className=" bg-base-100 rounded-xl col-span-5">
                 <fieldset className="fieldset">
 
-                    <label className="form-control w-full max-w-xs">
+                    {/* <label className="form-control w-full max-w-xs">
                         <div className="label">
                             <span className="label-text text-black text-sm mb-1">Add image</span>
                         </div>
@@ -223,7 +242,18 @@ const AddProduct = () => {
                         <div>
                             {errors.image?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>Please select an Image for package</p>}
                         </div>
-                    </label>
+                    </label> */}
+
+                    {/* Image uploader — takes the wider column */}
+                    <section className="lg:col-span-3">
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                            <div className="mb-5 flex items-center gap-2">
+
+                                <h2 className="text-base font-semibold">Product images</h2>
+                            </div>
+                            <ImageUploader images={images} onChange={setImages} />
+                        </div>
+                    </section>
                 </fieldset>
             </form>
         </div>
