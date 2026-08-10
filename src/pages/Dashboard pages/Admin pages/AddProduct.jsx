@@ -39,45 +39,44 @@ const AddProduct = () => {
             })
         
 const imageUrls = await Promise.all(uploadImages);
-console.log(imageUrls);
-
+console.log(imageUrls.length);
 
         // console.log(res?.data?.data?.display_url);
-        // if (res?.data?.success) {
-        //     const productInfo = {
-        //         name: data?.name,
-        //         brand: data?.brand,
-        //         price: data?.price,
-        //         category: data?.category,
-        //         images: res?.data?.data?.display_url,
-        //         sizes: data.size ? data.size.split(",") : [],
-        //         colors: data?.color ? data?.color.split(",") : [],
-        //         material: data?.material,
-        //         targetAudience: data?.targetAudience,
-        //         description: data?.description,
+        if (imageUrls.length > 0) {
+            const productInfo = {
+                name: data?.name,
+                brand: data?.brand,
+                price: data?.price,
+                category: data?.category,
+                images: imageUrls,
+                sizes: data.size ? data.size.split(",") : [],
+                colors: data?.color ? data?.color.split(",") : [],
+                material: data?.material,
+                targetAudience: data?.targetAudience,
+                description: data?.description,
 
 
-        //     }
-        //     // console.log(productInfo);
-        //     axiosSecure.post('/products', productInfo)
-        //         .then(res => {
-        //             // console.log(res.data);
-        //             if (res?.data?.success) {
-        //                 setUploading(false)
-        //                 reset()
-        //                 Swal.fire({
-        //                     position: "top-end",
-        //                     icon: "success",
-        //                     title: "Product has been uploaded",
-        //                     showConfirmButton: false,
-        //                     timer: 1500
-        //                 });
-        //             }
-        //         })
-        //         .catch(err => {
-        //             console.log('error from add product', err);
-        //         })
-        // }
+            }
+            // console.log(productInfo);
+            axiosSecure.post('/products', productInfo)
+                .then(res => {
+                    // console.log(res.data);
+                    if (res?.data?.success) {
+                        setUploading(false)
+                        reset()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Product has been uploaded",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log('error from add product', err);
+                })
+        }
 
         // console.log(data);
 
@@ -94,7 +93,7 @@ console.log(imageUrls);
                         <label className="label">
                             <span className="label-text text-black text-sm mb-1">Product Name<span className="text-red-500 text-lg">*</span></span>
                         </label><br />
-                        <input type="text" {...register("name")} placeholder="e.g. Designer Georgette Saree" className="input input-bordered w-full" />
+                        <input type="text" {...register("name")}  placeholder="e.g. Designer Georgette Saree" className="input input-bordered w-full" />
                         <div>
                             {errors.name?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
@@ -205,7 +204,7 @@ console.log(imageUrls);
                         <label className="label">
                             <span className="label-text text-black text-sm mb-1">Product tags</span>
                         </label><br />
-                        <input type="text" {...register("tags")} placeholder="e.g. Daily were " className="input input-bordered w-full" />
+                        <input type="text" {...register("tags", { required: true })} placeholder="e.g. Daily were " className="input input-bordered w-full" />
                         <div>
                             {errors.tasg?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
@@ -216,7 +215,7 @@ console.log(imageUrls);
                         <div className="label">
                             <span className="label-text text-black text-sm mb-1">Description</span>
                         </div><br />
-                        <textarea {...register("description")} className="textarea textarea-bordered h-24 w-full" placeholder="Write about product" ></textarea>
+                        <textarea {...register("description", { required: true })} className="textarea textarea-bordered h-24 w-full" placeholder="Write about product" ></textarea>
                         <div>
                             {errors.description?.type === 'required' && <p role="alert" className='text-red-600 mt-2'>This field is required !</p>}
                         </div>
