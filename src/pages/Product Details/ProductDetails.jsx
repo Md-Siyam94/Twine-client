@@ -27,7 +27,8 @@ const ProductDetails = () => {
                 setProducts(products)
             })
     }, [category])
-
+console.log(params.id);
+ console.log(product);
     // product add to card
     const handleAddToCart = (id) => {
         if (!user) {

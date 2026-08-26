@@ -16,14 +16,14 @@ import { FiHeart } from "react-icons/fi";
 const ProductCard = ({ product, refetch }) => {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
-    const isAdmin = useIsAdmin()
+    const [isAdmin] = useIsAdmin()
     const location = useLocation()
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
-console.log(isAdmin);
+
     // Edit product
     const handleEdit = (id) => {
-        // consolenpm .log(id);
+        // console.log(id);
     }
 
     // Delete product
@@ -51,7 +51,6 @@ console.log(isAdmin);
                     })
             }
         });
-
     }
 
     // product add to card
@@ -104,7 +103,7 @@ console.log(isAdmin);
 
     // Add wishlist product
     const handleAddToWishlist =(id)=>{
-console.log(id);
+// console.log(id);
     }
 
     useEffect(() => {
@@ -118,7 +117,7 @@ console.log(id);
     return (
         <SwiperSlide data-aos="fade-up" data-aos-easing="ease-in-out"
             data-aos-mirror="true" className='aos-animate aos-init'>
-            <motion.div whileHover={{ scale: 1.03 }} className="card bg-base-100 h-full shadow-sm   ">
+            <motion.div whileHover={{ scale: 1.03 }} className="card bg-base-100 h-full shadow-sm pt-3  ">
                 <div className='right-0 text-end'>
                     {
                         isAdmin && location.pathname !== "/" ? <div className='flex gap-3 items-center justify-end'>

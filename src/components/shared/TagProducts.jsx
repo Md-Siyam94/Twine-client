@@ -16,18 +16,13 @@ import Swal from 'sweetalert2';
 import ProductCard from '../ProductCard';
 const TagProducts = ({tag}) => {
 
-
-// console.log(tag);
-const isAdmin = useIsAdmin()
+const [isAdmin] = useIsAdmin()
     const {user} = useContext(AuthContext) 
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const location = useLocation()
     const products = useTagWiseProducts(tag)
-    // console.log(products);
-    // useEffect(() => {
-    //     AOS.init()
-    // }, [])
+
 
 
     const handleDelete = (id) => {
